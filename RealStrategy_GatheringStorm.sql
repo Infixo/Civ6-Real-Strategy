@@ -259,7 +259,19 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored) VALUES
 
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('ScienceVictoryProjects', 'PROJECT_ORBITAL_LASER',     1, 0),
-('ScienceVictoryProjects', 'PROJECT_TERRESTRIAL_LASER', 1, 0);
+('ScienceVictoryProjects', 'PROJECT_TERRESTRIAL_LASER', 1, 0),
+('ScienceVictoryCivics', 'CIVIC_SYNTHETIC_TECHNOCRACY', 1, 0);
+
+-- 2021-06-27 New techs for a new Science Victory flow
+DELETE FROM AiFavoredItems WHERE ListType = 'ScienceVictoryTechs';
+INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
+('ScienceVictoryTechs', 'TECH_WRITING',    1, 0), -- !BUGGED!
+('ScienceVictoryTechs', 'TECH_EDUCATION',  1, 0), -- !BUGGED!
+('ScienceVictoryTechs', 'TECH_CHEMISTRY',  1, 0), -- !BUGGED!
+('ScienceVictoryTechs', 'TECH_ROCKETRY',   1, 0), -- !BUGGED!
+('ScienceVictoryTechs', 'TECH_SATELLITES', 1, 0), -- !BUGGED!
+('ScienceVictoryTechs', 'TECH_NANOTECHNOLOGY',  1, 0), -- !BUGGED!
+('ScienceVictoryTechs', 'TECH_SMART_MATERIALS', 1, 0); -- !BUGGED!
 
 
 ------------------------------------------------------------------------------
