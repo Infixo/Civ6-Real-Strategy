@@ -67,7 +67,7 @@ UPDATE PlotEvalConditions SET PoorValue = -4, GoodValue = 15 WHERE ConditionType
 --UPDATE AiFavoredItems SET Value = 20 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_SCIENCE'; -- 10
 --UPDATE AiFavoredItems SET Value = 20 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_CULTURE'; -- 10
 UPDATE AiFavoredItems SET Value = 0 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_GOLD';  -- 20
---UPDATE AiFavoredItems SET Value = -25 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_FAITH'; -- -25
+UPDATE AiFavoredItems SET Value = -15 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_FAITH'; -- -25
 
 
 --------------------------------------------------------------
@@ -137,11 +137,11 @@ UPDATE PseudoYields SET DefaultValue = 0.5 WHERE PseudoYieldType = 'PSEUDOYIELD_
 UPDATE PseudoYields SET DefaultValue =  0.5 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_ADMIRAL'; -- 	0.5
 UPDATE PseudoYields SET DefaultValue =  0.6 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_ARTIST'; -- 	0.5
 UPDATE PseudoYields SET DefaultValue =  0.7 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_ENGINEER'; -- 	0.5
-UPDATE PseudoYields SET DefaultValue =  0.6 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_GENERAL'; -- 	0.5
+UPDATE PseudoYields SET DefaultValue =  0.5 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_GENERAL'; -- 	0.5
 UPDATE PseudoYields SET DefaultValue =  0.7 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_MERCHANT'; -- 	0.5, AI+ 1.5 - why so high?
 UPDATE PseudoYields SET DefaultValue =  0.5 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_MUSICIAN'; -- 	0.5
-UPDATE PseudoYields SET DefaultValue =  0.5 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_PROPHET'; -- 	0.5
-UPDATE PseudoYields SET DefaultValue =  0.8 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_SCIENTIST'; -- 	0.5, 1.6 vs. 0.75 disproportion Sci vs. Cul - not many Theater Districts
+UPDATE PseudoYields SET DefaultValue =  0.6 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_PROPHET'; -- 	0.5
+UPDATE PseudoYields SET DefaultValue =  0.7 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_SCIENTIST'; -- 	0.5, 1.6 vs. 0.75 disproportion Sci vs. Cul - not many Theater Districts
 UPDATE PseudoYields SET DefaultValue =  0.7 WHERE PseudoYieldType = 'PSEUDOYIELD_GPP_WRITER'; -- 	0.5
 
 -- great works
@@ -481,13 +481,13 @@ UPDATE AiFavoredItems SET Value = 50 WHERE ListType = 'ReligiousVictoryPseudoYie
 --UPDATE AiFavoredItems SET Value = 50 WHERE ListType = 'ReligiousVictoryPseudoYields' AND Item = 'PSEUDOYIELD_UNIT_RELIGIOUS'; -- def. 50
 
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
-('ReligiousVictoryYields', 'YIELD_CULTURE', 1, -15),
-('ReligiousVictoryYields', 'YIELD_GOLD',    1, -15),
-('ReligiousVictoryYields', 'YIELD_SCIENCE', 1, -15),
+('ReligiousVictoryYields', 'YIELD_CULTURE', 1, -10),
+('ReligiousVictoryYields', 'YIELD_GOLD',    1, -20),
+('ReligiousVictoryYields', 'YIELD_SCIENCE', 1, -20),
 ('ReligiousVictoryDiplomacy',    'DIPLOACTION_ALLIANCE_RELIGIOUS', 1, 0),
 ('ReligiousVictoryDiplomacy',    'DIPLOACTION_DECLARE_HOLY_WAR', 1, 0),
 ('ReligiousVictoryPseudoYields', 'PSEUDOYIELD_SPACE_RACE', 1, -50), -- base 100
-('ReligiousVictoryPseudoYields', 'PSEUDOYIELD_TOURISM', 1, -15); -- base 1
+('ReligiousVictoryPseudoYields', 'PSEUDOYIELD_TOURISM', 1, -20); -- base 1
 -- 2019-03-20 Added in GS
 --('ReligiousVictoryPseudoYields', 'PSEUDOYIELD_UNIT_RELIGIOUS', 1, 25); -- base 0.8 -- this includes Guru and Naturalist!
 
@@ -722,12 +722,12 @@ DELETE FROM AiFavoredItems WHERE ListType IN (
     
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 -- ANCIENT
-('AncientYields', 'YIELD_FAITH',   1, 20), -- just to get a religion
-('AncientYields', 'YIELD_SCIENCE',    1, 15),
+('AncientYields', 'YIELD_FAITH',   1, 15), -- just to get a religion
+('AncientYields', 'YIELD_SCIENCE', 1, 10),
 ('AncientPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15),
 ('AncientPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, -100), -- vanilla game
 ('AncientPseudoYields', 'PSEUDOYIELD_GPP_PROPHET',   1, 20),
-('AncientPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 15),
+('AncientPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 10),
 -- CLASSICAL
 --('ClassicalSensitivity', 'YIELD_SCIENCE', 1, 10),
 ('ClassicalYields', 'YIELD_CULTURE', 1, 15),
@@ -740,7 +740,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('ClassicalPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -10),
 ('ClassicalPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -5),
 ('ClassicalPseudoYields', 'PSEUDOYIELD_GPP_MERCHANT',  1, 15),
-('ClassicalPseudoYields', 'PSEUDOYIELD_GPP_PROPHET',   1,-20),
 ('ClassicalPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 15),
 ('ClassicalPseudoYields', 'PSEUDOYIELD_GPP_WRITER',    1, 15),
 --('ClassicalPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, -15),
@@ -758,6 +757,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('MedievalPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -5),
 ('MedievalPseudoYields', 'PSEUDOYIELD_GPP_ENGINEER',  1, 15),
 ('MedievalPseudoYields', 'PSEUDOYIELD_GPP_MERCHANT',  1,-15),
+('MedievalPseudoYields', 'PSEUDOYIELD_GPP_PROPHET',   1,-20),
 ('MedievalPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1,-15),
 ('MedievalPseudoYields', 'PSEUDOYIELD_GPP_WRITER',    1,-15),
 ('MedievalPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, -15),
@@ -774,12 +774,12 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('RenaissancePseudoYields', 'PSEUDOYIELD_CITY_POPULATION', 1, -25),
 ('RenaissancePseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, 25),
 ('RenaissancePseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, 15),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_ARTIST', 1, 10),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_ENGINEER', 1, 10),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_MERCHANT', 1, 15),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, -100),
+('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_ARTIST',    1, 10),
+('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_ENGINEER',  1, 10),
+('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_MERCHANT',  1, 15),
+('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_PROPHET',   1,-25),
 ('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 20),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_WRITER', 1, 10),
+('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_WRITER',    1, 10),
 --('RenaissancePseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, -10),
 ('RenaissancePseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, 15), -- exploration time
 -- INDUSTRIAL
