@@ -213,14 +213,14 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 --('AgressiveDiplomacy', 'DIPLOACTION_DECLARE_FORMAL_WAR', 1, 0),
 ('AggressivePseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, 15),
 ('AggressivePseudoYields', 'PSEUDOYIELD_STANDING_ARMY_VALUE',  1, 15),
-('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_COMBAT',       1, 20), -- 25
+('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_COMBAT',       1, 15), -- 25
 ('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, 10), -- 25
-('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT',   1, 20), -- 25
+('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT',   1, 15), -- 25
 ('AggressivePseudoYields', 'PSEUDOYIELD_CITY_BASE',            1,  50), -- 40
 ('AggressivePseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -10), -- -10
 ('AggressivePseudoYields', 'PSEUDOYIELD_CITY_DEFENSES',        1, -25), -- -25
 ('AggressivePseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, 10), -- 50 naval warfare is still not good, no point to have more of them
-('AggressivePseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1, 20); -- 50
+('AggressivePseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1, 15); -- 50
 
 -- TRAIT_LEADER_LOW_RELIGIOUS_PREFERENCE
 --		<Row ListType="LowReligiousPreferencePseudoYields" Item="PSEUDOYIELD_GPP_PROPHET" Value="-75"/>
