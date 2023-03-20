@@ -5,17 +5,18 @@
 -- 2020-05-15: Added RST_OPTION_BIASES
 -- 2020-08-09: Updated BELIEFS to New Frontier patch
 -- 2023-01-26: Version 2.1
+-- 2023-03-21: Version 2.1, part 2
 -- ===========================================================================
 
 -- just to make versioning easier
 INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_VERSION_MAJOR', '2');
-INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_VERSION_MINOR', '2');
+INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_VERSION_MINOR', '1');
 
 -- logging
-INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_LOG_DEBUG', '1'); -- log detailed debug info
+INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_LOG_DEBUG', '0'); -- log detailed debug info
 INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_LOG_STRAT', '1'); -- log strategy priorities
 INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_LOG_GUESS', '1'); -- log guess priorities
-INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_LOG_OTHER', '1'); -- log supporting (other) strategies
+INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_LOG_OTHER', '0'); -- log supporting (other) strategies
 
 -- random numbers - support for Multi Player
 INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_RANDOM', '2'); -- 0 - turned OFF / 1 - turned ON, using math.rand / 2 - turned ON, using Game.GetRandNum
