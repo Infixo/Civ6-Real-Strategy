@@ -13,10 +13,11 @@
 -- 2018-12-22 PlotEvaluations
 -- I recreate original entries from R&F however I am not convinced that they work
 -- My tests show that 2nd value (-6) is ignored
+-- 2023-03-19 GH #18 fix loyalty stupidity
 
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
-('StandardSettlePlot', 'Cultural Pressure', 0, 1),
-('StandardSettlePlot', 'Cultural Pressure', 1,-6);
+('StandardSettlePlot', 'Cultural Pressure', 0, 2); -- def. 1
+--('StandardSettlePlot', 'Cultural Pressure', 1,-6);
 
 
 -- FIXES
