@@ -953,11 +953,11 @@ function RefreshAndProcessData(ePlayerID:number)
 	--print(Game.GetCurrentGameTurn(), "FUN RefreshAndProcessData", ePlayerID);
 	
 	-- do all pre-checks so others won't have to
-	--local pPlayer:table = Players[ePlayerID];
-	--if not (pPlayer ~= nil and pPlayer:IsAlive() and pPlayer:IsMajor()) then return; end
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	
 	-- check if data needs to be refreshed
 	local data:table = tData[ePlayerID];
+	if data == nil or data.Data == nil then return false; end -- GH #15
 	--if not data.Dirty then return; end
 	if data.TurnRefreshStrategy == Game.GetCurrentGameTurn() then return; end -- we already refreshed on this turn
 
@@ -1651,8 +1651,7 @@ end
 
 function ActiveStrategyDefense(ePlayerID:number, iThreshold:number)
 	--print(Game.GetCurrentGameTurn(), "FUN ActiveStrategyDefense", ePlayerID, iThreshold);
-	--local pPlayer:table = Players[ePlayerID];
-	--if not (pPlayer:IsAlive() and pPlayer:IsMajor() and pPlayer:GetCities():GetCapitalCity() ~= nil) then return false; end -- have faith in the engine
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	--RefreshAndProcessData(ePlayerID);
 	local data:table = tData[ePlayerID];
 	local iOurPower:number = RST.PlayerGetMilitaryStrength(ePlayerID);
@@ -1688,8 +1687,7 @@ GameEvents.ActiveStrategyDefense.Add(ActiveStrategyDefense);
 -- similar mechanism could be used also for Yields, like YIELD_SCIENCE, YIELD_CULTURE, etc.
 function ActiveStrategyCatching(ePlayerID:number, iThreshold:number)
 	--print(Game.GetCurrentGameTurn(), "FUN ActiveStrategyCatching", ePlayerID, iThreshold);
-	--local pPlayer:table = Players[ePlayerID];
-	--if not (pPlayer:IsAlive() and pPlayer:IsMajor() and pPlayer:GetCities():GetCapitalCity() ~= nil) then return false; end -- have faith in the engine
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	local data:table = tData[ePlayerID];
 	if data == nil or data.Data == nil then return false; end
 	if data.Data.ElapsedTurns < GlobalParameters.RST_STRATEGY_COMPARE_OTHERS_NUM_TURNS then return false; end -- don't compare yet
@@ -1711,8 +1709,7 @@ GameEvents.ActiveStrategyCatching.Add(ActiveStrategyCatching);
 -- similar mechanism could be used also for Yields, like YIELD_SCIENCE, YIELD_CULTURE, etc.
 function ActiveStrategyEnough(ePlayerID:number, iThreshold:number)
 	--print(Game.GetCurrentGameTurn(), "FUN ActiveStrategyEnough", ePlayerID, iThreshold);
-	--local pPlayer:table = Players[ePlayerID];
-	--if not (pPlayer:IsAlive() and pPlayer:IsMajor() and pPlayer:GetCities():GetCapitalCity() ~= nil) then return false; end -- have faith in the engine
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	local data:table = tData[ePlayerID];
 	if data == nil or data.Data == nil then return false; end
 	if data.Data.ElapsedTurns < GlobalParameters.RST_STRATEGY_COMPARE_OTHERS_NUM_TURNS then return false; end -- don't compare yet
@@ -1730,8 +1727,7 @@ GameEvents.ActiveStrategyEnough.Add(ActiveStrategyEnough);
 -- PEACE
 function ActiveStrategyPeace(ePlayerID:number, iThreshold:number)
 	--print(Game.GetCurrentGameTurn(), "FUN ActiveStrategyPeace", ePlayerID, iThreshold);
-	--local pPlayer:table = Players[ePlayerID];
-	--if not (pPlayer:IsAlive() and pPlayer:IsMajor()) then return false; end -- have faith in the engine
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	local data:table = tData[ePlayerID];
 	local iNumWars:number, _ = PlayerGetNumWars(ePlayerID);
 	data.ActivePeace = iNumWars == 0;
@@ -1746,8 +1742,7 @@ GameEvents.ActiveStrategyPeace.Add(ActiveStrategyPeace);
 -- WAR
 function ActiveStrategyAtWar(ePlayerID:number, iThreshold:number)
 	--print(Game.GetCurrentGameTurn(), "FUN ActiveStrategyAtWar", ePlayerID, iThreshold);
-	--local pPlayer:table = Players[ePlayerID];
-	--if not (pPlayer:IsAlive() and pPlayer:IsMajor()) then return false; end -- have faith in the engine
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	local data:table = tData[ePlayerID];
 	local iNumWars:number, _ = PlayerGetNumWars(ePlayerID);
 	data.ActiveAtWar = iNumWars > 0;
@@ -1764,6 +1759,7 @@ GameEvents.ActiveStrategyAtWar.Add(ActiveStrategyAtWar);
 
 function ActiveStrategyMoreScience(ePlayerID:number, iThreshold:number)
 	--print(Game.GetCurrentGameTurn(), "FUN ActiveStrategyMoreScience", ePlayerID, iThreshold);
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	local data:table = tData[ePlayerID];
 	if data == nil or data.Data == nil then return false; end
 	if data.Data.ElapsedTurns < GlobalParameters.RST_STRATEGY_COMPARE_OTHERS_NUM_TURNS then return false; end -- don't compare yet
@@ -1789,6 +1785,7 @@ GameEvents.ActiveStrategyMoreScience.Add(ActiveStrategyMoreScience);
 
 function ActiveStrategyMoreCulture(ePlayerID:number, iThreshold:number)
 	--print(Game.GetCurrentGameTurn(), "FUN ActiveStrategyMoreCulture", ePlayerID, iThreshold);
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	local data:table = tData[ePlayerID];
 	if data == nil or data.Data == nil then return false; end
 	if data.Data.ElapsedTurns < GlobalParameters.RST_STRATEGY_COMPARE_OTHERS_NUM_TURNS then return false; end -- don't compare yet
@@ -1916,6 +1913,7 @@ function RefreshNavalData(ePlayerID:number)
 
 	-- check if data needs to be refreshed
 	local data:table = tData[ePlayerID];
+	if data == nil or data.Data == nil then return false; end	
 	if data.TurnRefreshNaval == Game.GetCurrentGameTurn() then return; end -- we already refreshed on this turn
 	
 	-- active turns with game speed scaling
@@ -1942,6 +1940,7 @@ end
 
 function ActiveStrategyNaval(ePlayerID:number, iThreshold:number)
 	if ePlayerID == 62 or ePlayerID == 63 then return false; end
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	RefreshNavalData(ePlayerID);
 	return tData[ePlayerID].ActiveNaval == iThreshold;
 end
@@ -1951,6 +1950,7 @@ GameEvents.ActiveStrategyNaval.Add(ActiveStrategyNaval);
 function ActiveStrategyExploreLand(ePlayerID:number, iThreshold:number)
 	--print("FUN ActiveStrategyExploreLand", ePlayerID, iThreshold);
 	if ePlayerID == 62 or ePlayerID == 63 then return false; end
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	--print("...cities", Players[ePlayerID]:GetCities():GetCount());
 	if Players[ePlayerID]:GetCities():GetCount() > iThreshold then return false; end
 	RefreshNavalData(ePlayerID);
@@ -1971,9 +1971,8 @@ GameEvents.ActiveStrategyExploreLand.Add(ActiveStrategyExploreLand);
 -- How to detect if we are close to each other? Easy, go through all plots? No, only Cities and check how far they. The further, the less threat.
 
 function ActiveStrategyThreat(ePlayerID:number, iThreshold:number)
-	print(Game.GetCurrentGameTurn(), "FUN ActiveStrategyThreat", ePlayerID, iThreshold);
-	--local pPlayer:table = Players[ePlayerID];
-	--if not (pPlayer:IsAlive() and pPlayer:IsMajor()) then return false; end -- have faith in the engine
+	--print(Game.GetCurrentGameTurn(), "FUN ActiveStrategyThreat", ePlayerID, iThreshold);
+	if not PlayerManager.IsAlive(ePlayerID) then return false; end -- have faith in the engine -- nope :( GH #15
 	local data:table = tData[ePlayerID];
 	local iNumWars:number, _ = PlayerGetNumWars(ePlayerID);
 	data.ActiveThreat = iNumWars > 0;
