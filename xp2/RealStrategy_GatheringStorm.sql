@@ -271,6 +271,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('ScienceVictoryTechs', 'TECH_ROCKETRY',   1, 0), -- !BUGGED!
 ('ScienceVictoryTechs', 'TECH_SATELLITES', 1, 0), -- !BUGGED!
 ('ScienceVictoryTechs', 'TECH_NANOTECHNOLOGY',  1, 0), -- !BUGGED!
+('ScienceVictoryTechs', 'TECH_OFFWORLD_MISSION',  1, 0), -- !BUGGED!
 ('ScienceVictoryTechs', 'TECH_SMART_MATERIALS', 1, 0); -- !BUGGED!
 
 
