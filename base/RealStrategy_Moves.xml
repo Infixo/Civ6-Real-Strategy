@@ -62,14 +62,14 @@
 	<Row ListType="Default Tactical" Item="Air Deploy"/>
 	<Row ListType="Default Tactical" Item="Coastal Raid"/>
 	<Row ListType="Default Tactical" Item="Make Military Formation"/>
-	<Row ListTYpe="Default Tactical" Item="Pillage District"/>
-	<Row ListTYpe="Default Tactical" Item="Pillage Improvement"/>
-	<Row ListTYpe="Default Tactical" Item="Plunder Trader"/>
+	<Row ListType="Default Tactical" Item="Pillage District"/>
+	<Row ListType="Default Tactical" Item="Pillage Improvement"/>
+	<Row ListType="Default Tactical" Item="Plunder Trader"/>
 	<Row ListType="Default Tactical" Item="Heal"/>
 	<Row ListType="Default Tactical" Item="Air Rebase"/>
 	<Row ListType="Default Tactical" Item="Attack Camps"/>
 	<Row ListType="Default Tactical" Item="Attack Low Priority"/>
-	<Row ListTYpe="Default Tactical" Item="Attack District"/>
+	<Row ListType="Default Tactical" Item="Attack District"/>
 	<Row ListType="Default Tactical" Item="Attack Civilians"/>
 	<Row ListType="Default Tactical" Item="Chase Target"/>
 	<Row ListType="Default Tactical" Item="Wander Near City"/>
