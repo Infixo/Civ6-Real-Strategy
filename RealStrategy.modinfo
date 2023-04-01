@@ -68,6 +68,39 @@
 		<Criteria id="DLCPortugal">         <!-- 2020-03-25 -->
 			<LeaderPlayable>Players:StandardPlayers::LEADER_JOAO_III,StandardPlayers::LEADER_JOAO_III,Players:Expansion1_Players::LEADER_JOAO_III,Players:Expansion2_Players::LEADER_JOAO_III</LeaderPlayable>
 		</Criteria>
+		<Criteria id="DLCJuliusCaesar">		<!-- 2022-11-21 -->
+			<LeaderPlayable>Players:StandardPlayers::LEADER_JULIUS_CAESAR,StandardPlayers::LEADER_JULIUS_CAESAR,Players:Expansion1_Players::LEADER_JULIUS_CAESAR,Players:Expansion2_Players::LEADER_JULIUS_CAESAR</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCGreatNegotiators"> <!-- 2022-11-21 -->
+			<LeaderPlayable>Players:StandardPlayers::LEADER_ABRAHAM_LINCOLN,StandardPlayers::LEADER_ABRAHAM_LINCOLN,Players:Expansion1_Players::LEADER_ABRAHAM_LINCOLN,Players:Expansion2_Players::LEADER_ABRAHAM_LINCOLN</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_NZINGA_MBANDE,StandardPlayers::LEADER_NZINGA_MBANDE,Players:Expansion1_Players::LEADER_NZINGA_MBANDE,Players:Expansion2_Players::LEADER_NZINGA_MBANDE</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_SALADIN_ALT,StandardPlayers::LEADER_SALADIN_ALT,Players:Expansion1_Players::LEADER_SALADIN_ALT,Players:Expansion2_Players::LEADER_SALADIN_ALT</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCGreatWarlords">	<!-- 2022-12-15 -->
+			<LeaderPlayable>Players:StandardPlayers::LEADER_TOKUGAWA,Players:Expansion1_Players::LEADER_TOKUGAWA,Players:Expansion2_Players::LEADER_TOKUGAWA</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_NADER_SHAH,Players:Expansion1_Players::LEADER_NADER_SHAH,Players:Expansion2_Players::LEADER_NADER_SHAH</LeaderPlayable>
+			<LeaderPlayable>Players:Expansion2_Players::LEADER_SULEIMAN_ALT</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCRulersOfChina">	<!-- 2023-01-19 -->
+			<LeaderPlayable>Players:StandardPlayers::LEADER_YONGLE,Players:Expansion1_Players::LEADER_YONGLE,Players:Expansion2_Players::LEADER_YONGLE</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_WU_ZETIAN,Players:Expansion1_Players::LEADER_WU_ZETIAN,Players:Expansion2_Players::LEADER_WU_ZETIAN</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_QIN_ALT,Players:Expansion1_Players::LEADER_QIN_ALT,Players:Expansion2_Players::LEADER_QIN_ALT</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCRulersOfTheSahara"><!-- 2023-02-16 -->
+			<LeaderPlayable>Players:StandardPlayers::LEADER_RAMSES,Players:Expansion1_Players::LEADER_RAMSES,Players:Expansion2_Players::LEADER_RAMSES</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_CLEOPATRA_ALT,Players:Expansion1_Players::LEADER_CLEOPATRA_ALT,Players:Expansion2_Players::LEADER_CLEOPATRA_ALT</LeaderPlayable>
+			<LeaderPlayable>Players:Expansion2_Players::LEADER_SUNDIATA_KEITA</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCGreatBuilders">	<!-- 2023-03-15 -->
+			<LeaderPlayable>Players:StandardPlayers::LEADER_THEODORA,Players:Expansion1_Players::LEADER_THEODORA,Players:Expansion2_Players::LEADER_THEODORA</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_LUDWIG,Players:Expansion1_Players::LEADER_LUDWIG,Players:Expansion2_Players::LEADER_LUDWIG</LeaderPlayable>
+			<LeaderPlayable>Players:Expansion1_Players::LEADER_SEJONG, Players:Expansion2_Players::LEADER_SEJONG</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCRulersOfEngland">	<!-- 2023-03-29 -->
+			<LeaderPlayable>Players:StandardPlayers::LEADER_ELIZABETH,Players:Expansion1_Players::LEADER_ELIZABETH,Players:Expansion2_Players::LEADER_ELIZABETH</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_HARALD_ALT,Players:Expansion1_Players::LEADER_HARALD_ALT,Players:Expansion2_Players::LEADER_HARALD_ALT</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_VICTORIA_ALT,Players:Expansion1_Players::LEADER_VICTORIA_ALT,Players:Expansion2_Players::LEADER_VICTORIA_ALT</LeaderPlayable>
+		</Criteria>
 	</ActionCriteria>
 	<InGameActions>
 		<ImportFiles id="RST_Imports">
@@ -158,6 +191,34 @@
 			<Properties><LoadOrder>340</LoadOrder></Properties>
 			<File>nfp/RealStrategy_Portugal.sql</File>
 		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_JuliusCaesar" criteria="DLCJuliusCaesar">
+			<Properties><LoadOrder>350</LoadOrder></Properties>
+			<File>lp/RealStrategy_JuliusCaesar.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_GreatNegotiators" criteria="DLCGreatNegotiators">
+			<Properties><LoadOrder>351</LoadOrder></Properties>
+			<File>lp/RealStrategy_GreatNegotiators.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_GreatWarlords" criteria="DLCGreatWarlords">
+			<Properties><LoadOrder>352</LoadOrder></Properties>
+			<File>lp/RealStrategy_GreatWarlords.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_RulersOfChina" criteria="DLCRulersOfChina">
+			<Properties><LoadOrder>353</LoadOrder></Properties>
+			<File>lp/RealStrategy_RulersOfChina.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_RulersOfTheSahara" criteria="DLCRulersOfTheSahara">
+			<Properties><LoadOrder>354</LoadOrder></Properties>
+			<File>lp/RealStrategy_RulersOfTheSahara.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_GreatBuilders" criteria="DLCGreatBuilders">
+			<Properties><LoadOrder>355</LoadOrder></Properties>
+			<File>lp/RealStrategy_GreatBuilders.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_RulersOfEngland" criteria="DLCRulersOfEngland">
+			<Properties><LoadOrder>356</LoadOrder></Properties>
+			<File>lp/RealStrategy_RulersOfEngland.sql</File>
+		</UpdateDatabase>
 		<AddUserInterfaces id="RST_Interfaces">
 			<Properties><Context>InGame</Context></Properties>
 			<File>Lua/RealStrategy_InGameExp.xml</File>
@@ -195,6 +256,13 @@
         <File>nfp/RealStrategy_Babylon.sql</File>
         <File>nfp/RealStrategy_KublaiKhanVietnam.sql</File>
         <File>nfp/RealStrategy_Portugal.sql</File>
+		<File>lp/RealStrategy_JuliusCaesar.sql</File>
+        <File>lp/RealStrategy_GreatNegotiators.sql</File>
+        <File>lp/RealStrategy_GreatWarlords.sql</File>
+        <File>lp/RealStrategy_RulersOfChina.sql</File>
+        <File>lp/RealStrategy_RulersOfTheSahara.sql</File>
+        <File>lp/RealStrategy_GreatBuilders.sql</File>
+        <File>lp/RealStrategy_RulersOfEngland.sql</File>
 		<File>Lua/RealStrategy.lua</File>
 		<!--<File>Lua/RealStrategy_GreatPeople.lua</File>-->
 		<!--<File>Lua/RealStrategy_GreatPeople.xml</File>-->

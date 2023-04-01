@@ -217,6 +217,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, 10), -- 25
 ('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT',   1, 15), -- 25
 ('AggressivePseudoYields', 'PSEUDOYIELD_CITY_BASE',            1,  50), -- 40
+('AggressivePseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, -100), -- 2023-04-01 #23 test
 ('AggressivePseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -10), -- -10
 ('AggressivePseudoYields', 'PSEUDOYIELD_CITY_DEFENSES',        1, -25), -- -25
 ('AggressivePseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, 10), -- 50 naval warfare is still not good, no point to have more of them
@@ -256,7 +257,7 @@ INSERT INTO RSTFlavors (ObjectType, Type, Subtype, Strategy, Value) VALUES -- ge
 ('LEADER_QIN', 'LEADER', '', 'CONQUEST', 3),	('LEADER_QIN', 'LEADER', '', 'SCIENCE', 5),	('LEADER_QIN', 'LEADER', '', 'CULTURE', 7),	('LEADER_QIN', 'LEADER', '', 'RELIGION', 1),	('LEADER_QIN', 'LEADER', '', 'DIPLO', 2),
 ('LEADER_SALADIN', 'LEADER', '', 'CONQUEST', 2),	('LEADER_SALADIN', 'LEADER', '', 'SCIENCE', 6),	('LEADER_SALADIN', 'LEADER', '', 'CULTURE', 4),	('LEADER_SALADIN', 'LEADER', '', 'RELIGION', 7),	('LEADER_SALADIN', 'LEADER', '', 'DIPLO', 1),
 ('LEADER_TOMYRIS', 'LEADER', '', 'CONQUEST', 6),	('LEADER_TOMYRIS', 'LEADER', '', 'SCIENCE', 1),	('LEADER_TOMYRIS', 'LEADER', '', 'CULTURE', 1),	('LEADER_TOMYRIS', 'LEADER', '', 'RELIGION', 4),	('LEADER_TOMYRIS', 'LEADER', '', 'DIPLO', 3),
-('LEADER_TRAJAN', 'LEADER', '', 'CONQUEST', 5),	('LEADER_TRAJAN', 'LEADER', '', 'SCIENCE', 3),	('LEADER_TRAJAN', 'LEADER', '', 'CULTURE', 4),	('LEADER_TRAJAN', 'LEADER', '', 'RELIGION', 1),	('LEADER_TRAJAN', 'LEADER', '', 'DIPLO', 2),
+('LEADER_TRAJAN', 'LEADER', '', 'CONQUEST', 3),	('LEADER_TRAJAN', 'LEADER', '', 'SCIENCE', 4),	('LEADER_TRAJAN', 'LEADER', '', 'CULTURE', 5),	('LEADER_TRAJAN', 'LEADER', '', 'RELIGION', 1),	('LEADER_TRAJAN', 'LEADER', '', 'DIPLO', 3),
 ('LEADER_T_ROOSEVELT', 'LEADER', '', 'CONQUEST', 4),	('LEADER_T_ROOSEVELT', 'LEADER', '', 'SCIENCE', 4),	('LEADER_T_ROOSEVELT', 'LEADER', '', 'CULTURE', 7),	('LEADER_T_ROOSEVELT', 'LEADER', '', 'RELIGION', 1),	('LEADER_T_ROOSEVELT', 'LEADER', '', 'DIPLO', 7),
 ('LEADER_VICTORIA', 'LEADER', '', 'CONQUEST', 5),	('LEADER_VICTORIA', 'LEADER', '', 'SCIENCE', 3),	('LEADER_VICTORIA', 'LEADER', '', 'CULTURE', 7),	('LEADER_VICTORIA', 'LEADER', '', 'RELIGION', 1),	('LEADER_VICTORIA', 'LEADER', '', 'DIPLO', 1);
 
@@ -746,18 +747,29 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('TrajanWonders', 'BUILDING_STONEHENGE', 0, 0),
 ('TrajanSettlement', 'Nearest Friendly City', 0, -1),
 ('TrajanSettlement', 'Fresh Water', 0, -10),
-('TrajanPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 50),
-('TrajanPseudoYields', 'PSEUDOYIELD_CITY_POPULATION', 1, -25),
-('TrajanPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, -50),
-('TrajanPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -15),
-('TrajanPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -15),
-('TrajanPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 20),
-('TrajanPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, 10); -- more crappy cities
+-- 2023-04-01 Trajan is no more conquer focus, Ceasar is now (and he gets Aggressive traits)
+--('TrajanPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 50),
+--('TrajanPseudoYields', 'PSEUDOYIELD_CITY_POPULATION', 1, -25),
+--('TrajanPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, -50),
+--('TrajanPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -15),
+--('TrajanPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -15),
+--('TrajanPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 20), -- moved to Rome
+('TrajanPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, 15); -- more crappy cities
 
 -- Rise & Fall
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value)
 SELECT 'TrajanWonders', 'BUILDING_TEMPLE_ARTEMIS', 1, 0
 FROM Types WHERE Type = 'BUILDING_TEMPLE_ARTEMIS';
+
+-- 2023-04-01 Leader Pass changes
+INSERT INTO AiListTypes (ListType) VALUES
+('RomePseudoYields');
+INSERT INTO AiLists (ListType, LeaderType, System) VALUES
+('RomePseudoYields', 'TRAIT_CIVILIZATION_ALL_ROADS_TO_ROME', 'PseudoYields');
+INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
+('RomePseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 15),
+('RomePseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 15);
+
 
 
 -- LEADER_T_ROOSEVELT / AMERICA

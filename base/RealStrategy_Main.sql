@@ -111,7 +111,7 @@ I determined that:
 --UPDATE PseudoYields SET DefaultValue = 450 WHERE PseudoYieldType = 'PSEUDOYIELD_CITY_BASE'; -- 	450, important mostly early game, later valuations are in thousands (5000+)...
 UPDATE PseudoYields SET DefaultValue =  50 WHERE PseudoYieldType = 'PSEUDOYIELD_CITY_DEFENDING_UNITS'; -- 	80 -- very important, especially late game, causes huge jumps in city valuation
 UPDATE PseudoYields SET DefaultValue = 275 WHERE PseudoYieldType = 'PSEUDOYIELD_CITY_DEFENSES'; -- 	200 - very important for aggression mgmt!
-UPDATE PseudoYields SET DefaultValue = 150 WHERE PseudoYieldType = 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL'; -- 	200, lower value should save Minors a bit, Conquest will boost it anyway
+--UPDATE PseudoYields SET DefaultValue = 150 WHERE PseudoYieldType = 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL'; -- 	200, lower value should save Minors a bit, Conquest will boost it anyway
 UPDATE PseudoYields SET DefaultValue =  75 WHERE PseudoYieldType = 'PSEUDOYIELD_CITY_POPULATION'; -- 	50, not so important overall
 
 
@@ -551,6 +551,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('MilitaryVictoryYields', 'YIELD_CULTURE', 1,-15),
 ('MilitaryVictoryYields', 'YIELD_FAITH',   1,-25),
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 100), -- +100%
+('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, -100), -- 2023-04-01 #23 test
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_CITY_POPULATION', 1, 50), -- base 50 +50%
 --('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -25), -- -25% - this is quite a lot, should trigger more wars
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -20), -- base 80, -20%
@@ -654,7 +655,7 @@ INSERT OR REPLACE INTO Strategy_Priorities (StrategyType, ListType) VALUES
 
 
 -- fix
-INSERT OR REPLACE INTO Strategy_Priorities (StrategyType, ListType) VALUES ('STRATEGY_MEDIEVAL_CHANGES', 'MedievalSettlements');
+INSERT OR IGNORE INTO Strategy_Priorities (StrategyType, ListType) VALUES ('STRATEGY_MEDIEVAL_CHANGES', 'MedievalSettlements');
 
 
 INSERT OR REPLACE INTO Types (Type, Kind) VALUES
@@ -1036,7 +1037,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('RSTEnoughPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 100), -- be more bold
 ('RSTEnoughPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -25), -- be more bold
 ('RSTEnoughPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -25), -- be more bold
-('RSTEnoughPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, 100), -- be more bold
+--('RSTEnoughPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, 100), -- be more bold #23
 ('RSTEnoughPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, -75), -- opposite of the RSTCatchingPseudoYields
 ('RSTEnoughPseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT', 1, -75),
 ('RSTEnoughPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, -75),
