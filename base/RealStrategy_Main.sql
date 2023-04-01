@@ -726,7 +726,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('AncientYields', 'YIELD_FAITH',   1, 15), -- just to get a religion
 ('AncientYields', 'YIELD_SCIENCE', 1, 10),
 ('AncientPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15),
-('AncientPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, -100), -- vanilla game
+('AncientPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, -25), -- #27
 ('AncientPseudoYields', 'PSEUDOYIELD_GPP_PROPHET',   1, 20),
 ('AncientPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 10),
 -- CLASSICAL
@@ -763,7 +763,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('MedievalPseudoYields', 'PSEUDOYIELD_GPP_WRITER',    1,-15),
 ('MedievalPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, -15),
 ('MedievalPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, -15),
-('MedievalPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, 100), -- vanilla game
+('MedievalPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, 25), -- #27
 -- RENAISSANCE
 ('RenaissanceYields', 'YIELD_CULTURE',    1, 15),
 ('RenaissanceYields', 'YIELD_FAITH',      1,-25),
