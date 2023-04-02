@@ -227,8 +227,13 @@ WHERE ResourceType IN ('RESOURCE_URANIUM', 'RESOURCE_OIL', 'RESOURCE_NITER')
 	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
--- LEADER_MANSA_MUSA
+-- LEADER_MANSA_MUSA / MALI
 -- golden ages, int. TRs, gold, GPP merchant, faith
+
+-- 2023-04-02 He already gets +25% from agenda trait
+DELETE FROM AiFavoredItems WHERE ListType = 'MansaMusaGold';
+DELETE FROM AiLists WHERE ListType = 'MansaMusaGold';
+DELETE FROM AiListTypes WHERE ListType = 'MansaMusaGold';
 
 INSERT INTO AiListTypes (ListType) VALUES
 ('MansaMusaDiplomacy'),
@@ -239,6 +244,7 @@ INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('MansaMusaYields',       'TRAIT_LEADER_SAHEL_MERCHANTS', 'Yields'),
 ('MansaMusaPseudoYields', 'TRAIT_LEADER_SAHEL_MERCHANTS', 'PseudoYields');
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
+('MansaMusaCivics', 'CIVIC_FOREIGN_TRADE', 1, 0),
 ('MansaMusaDiplomacy', 'DIPLOACTION_ALLIANCE_ECONOMIC', 1, 0),
 ('MansaMusaDiplomacy', 'DIPLOACTION_ALLIANCE_RELIGIOUS', 1, 0),
 ('MansaMusaYields', 'YIELD_FAITH', 1, 20),
@@ -255,7 +261,7 @@ WHERE ImprovementType = 'IMPROVEMENT_MINE'
 	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
--- LEADER_MATTHIAS_CORVINUS
+-- LEADER_MATTHIAS_CORVINUS / HUNGARY
 -- across river, geothermal fissure, alliances
 
 -- 2019-04-04 AggressivePseudoYields

@@ -396,30 +396,49 @@ WHERE ImprovementType = 'IMPROVEMENT_STEPWELL' AND TerrainType <> 'TERRAIN_SNOW'
 
 INSERT INTO AiListTypes (ListType) VALUES
 ('CleopatraDiplomacy'),
-('CleopatraYields'),
+--('CleopatraYields'),
 ('CleopatraPseudoYields');
 INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('CleopatraDiplomacy', 'TRAIT_LEADER_MEDITERRANEAN', 'DiplomaticActions'),
-('CleopatraYields', 'TRAIT_LEADER_MEDITERRANEAN', 'Yields'),
+--('CleopatraYields', 'TRAIT_LEADER_MEDITERRANEAN', 'Yields'),
 ('CleopatraPseudoYields', 'TRAIT_LEADER_MEDITERRANEAN', 'PseudoYields');
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('CleopatraDiplomacy', 'DIPLOACTION_ALLIANCE', 1, 0),
 ('CleopatraDiplomacy', 'DIPLOACTION_ALLIANCE_MILITARY', 1, 0),
 ('CleopatraDiplomacy', 'DIPLOACTION_RENEW_ALLIANCE', 1, 0),
-('CleopatraYields', 'YIELD_GOLD', 1, 10),
-('CleopatraYields', 'YIELD_PRODUCTION', 1, 10),
-('CleopatraYields', 'YIELD_SCIENCE', 1, -10),
-('CleopatraWonders', 'BUILDING_ORACLE', 1, 0),
-('CleopatraPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
-('CleopatraPseudoYields', 'PSEUDOYIELD_CITY_POPULATION', 1, -100), -- do NOT conquer neighbors
-('CleopatraPseudoYields', 'PSEUDOYIELD_GPP_MERCHANT', 1, 15),
---('CleopatraPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, 15),
-('CleopatraPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, 10),
-('CleopatraPseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 50),
-('CleopatraPseudoYields', 'PSEUDOYIELD_WONDER', 1, 25),
-('CleopatraPseudoYields', 'PSEUDOYIELD_TOURISM', 1, 15),
-('CleopatraPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- sphinx
-('CleopatraPseudoYields', 'PSEUDOYIELD_DISTRICT', 1, 15);
+--('CleopatraYields', 'YIELD_GOLD', 1, 10),
+('CleopatraPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_BONUS', 1, 10),
+('CleopatraPseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 25);
+
+-- 2023-04-02 Common Egypt traits
+INSERT INTO AiListTypes (ListType) VALUES
+('EgyptTechs'),
+('EgyptCivics'),
+('EgyptDistricts'),
+('EgyptYields'),
+('EgyptPseudoYields');
+INSERT INTO AiLists (ListType, LeaderType, System) VALUES
+('EgyptTechs',        'TRAIT_CIVILIZATION_ITERU', 'Technologies'),
+('EgyptCivics',       'TRAIT_CIVILIZATION_ITERU', 'Civics'),
+('EgyptDistricts',    'TRAIT_CIVILIZATION_ITERU', 'Districts'),
+('EgyptYields',       'TRAIT_CIVILIZATION_ITERU', 'Yields'),
+('EgyptPseudoYields', 'TRAIT_CIVILIZATION_ITERU', 'PseudoYields');
+INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
+('EgyptTechs', 'TECH_FLIGHT', 1, 0),
+('EgyptCivics', 'CIVIC_CRAFTSMANSHIP', 1, 0),
+('EgyptYields', 'YIELD_PRODUCTION', 1, 10),
+('EgyptYields', 'YIELD_CULTURE', 1, 10),
+('EgyptYields', 'YIELD_SCIENCE', 1, -10),
+('EgyptPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
+('EgyptPseudoYields', 'PSEUDOYIELD_WONDER', 1, 10),
+('EgyptPseudoYields', 'PSEUDOYIELD_TOURISM', 1, 10),
+('EgyptPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 10); -- sphinx
+
+-- XP2
+INSERT INTO AiFavoredItems (ListType, Item, Favored)
+SELECT 'EgyptDistricts', 'DISTRICT_DAM', 0
+WHERE EXISTS (SELECT 1 FROM Districts WHERE DistrictType = 'DISTRICT_DAM');
+
 
 
 -- LEADER_GILGAMESH / SUMERIA

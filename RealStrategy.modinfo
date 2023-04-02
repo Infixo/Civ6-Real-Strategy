@@ -93,6 +93,8 @@
 		<Criteria id="DLCRulersOfTheSahara"><!-- 2023-02-16 -->
 			<LeaderPlayable>Players:StandardPlayers::LEADER_RAMSES,Players:Expansion1_Players::LEADER_RAMSES,Players:Expansion2_Players::LEADER_RAMSES</LeaderPlayable>
 			<LeaderPlayable>Players:StandardPlayers::LEADER_CLEOPATRA_ALT,Players:Expansion1_Players::LEADER_CLEOPATRA_ALT,Players:Expansion2_Players::LEADER_CLEOPATRA_ALT</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCRulersOfTheSahara_Sundiata"><!-- 2023-02-16 -->
 			<LeaderPlayable>Players:Expansion2_Players::LEADER_SUNDIATA_KEITA</LeaderPlayable>
 		</Criteria>
 		<Criteria id="DLCGreatBuilders">	<!-- 2023-03-15 -->
@@ -223,6 +225,10 @@
 			<Properties><LoadOrder>390</LoadOrder></Properties>
 			<File>lp/RealStrategy_RulersOfTheSahara.sql</File>
 		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_RulersOfTheSahara" criteria="DLCRulersOfTheSahara_Sundiata">
+			<Properties><LoadOrder>391</LoadOrder></Properties>
+			<File>lp/RealStrategy_RulersOfTheSahara_Sundiata.sql</File>
+		</UpdateDatabase>
 		<UpdateDatabase id="RST_DB_GreatBuilders" criteria="DLCGreatBuilders">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<File>lp/RealStrategy_GreatBuilders.sql</File>
@@ -275,6 +281,7 @@
         <File>lp/RealStrategy_GreatWarlords_Tokugawa.sql</File>
         <File>lp/RealStrategy_RulersOfChina.sql</File>
         <File>lp/RealStrategy_RulersOfTheSahara.sql</File>
+        <File>lp/RealStrategy_RulersOfTheSahara_Sundiata.sql</File>
         <File>lp/RealStrategy_GreatBuilders.sql</File>
         <File>lp/RealStrategy_RulersOfEngland.sql</File>
 		<File>Lua/RealStrategy.lua</File>
