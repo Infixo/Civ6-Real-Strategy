@@ -89,7 +89,7 @@ INSERT INTO AiListTypes (ListType) VALUES
 INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('KublaiMongoliaTechs',        'TRAIT_LEADER_KUBLAI_MONGOLIA', 'Technologies'),
 ('KublaiMongoliaPseudoYields', 'TRAIT_LEADER_KUBLAI_MONGOLIA', 'PseudoYields'),
-('KublaiMongoliaUnitBuilds',   'TRAIT_LEADER_KUBLAI_MONGOLIA', 'DiplomaticActions');
+('KublaiMongoliaUnitBuilds',   'TRAIT_LEADER_KUBLAI_MONGOLIA', 'UnitPromotionClasses');
 
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('KublaiMongoliaTechs', 'TECH_STIRRUPS', 1, 0),

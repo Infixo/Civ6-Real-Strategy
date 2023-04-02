@@ -23,7 +23,7 @@ INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('RooseveltTechs',        'TRAIT_LEADER_ANTIQUES_AND_PARKS', 'Technologies'),
 ('RooseveltCivics',       'TRAIT_LEADER_ANTIQUES_AND_PARKS', 'Civics'),
 ('RooseveltPseudoYields', 'TRAIT_LEADER_ANTIQUES_AND_PARKS', 'PseudoYields'),
-('RooseveltUnits',        'TRAIT_LEADER_ANTIQUES_AND_PARKS', 'UnitPromotionClasses');
+('RooseveltUnits',        'TRAIT_LEADER_ANTIQUES_AND_PARKS', 'Units');
 
 DELETE FROM AiFavoredItems WHERE ListType = 'RooseveltPseudoYields' AND Item = 'PSEUDOYIELD_ENVIRONMENT'; -- Bull Moose agenda has it
 
@@ -45,17 +45,17 @@ DELETE FROM AiLists WHERE ListType = 'RooseveltPseudoYields' AND LeaderType = 'T
 
 INSERT INTO AiListTypes (ListType) VALUES
 ('RooseveltAltPseudoYields'),
-('RooseveltAltUnitBuilds'),
+--('RooseveltAltUnitBuilds'),
 ('RooseveltAltDiploActions');
 
 INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('RooseveltAltPseudoYields', 'TRAIT_LEADER_ROOSEVELT_COROLLARY', 'PseudoYields'),
-('RooseveltAltUnitBuilds',   'TRAIT_LEADER_ROOSEVELT_COROLLARY', 'UnitPromotionClasses'),
+--('RooseveltAltUnitBuilds',   'TRAIT_LEADER_ROOSEVELT_COROLLARY', 'UnitPromotionClasses'),
 ('RooseveltAltDiploActions', 'TRAIT_LEADER_ROOSEVELT_COROLLARY', 'DiplomaticActions');
 
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('RooseveltAltPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, 15), -- favor
 ('RooseveltAltPseudoYields', 'PSEUDOYIELD_INFLUENCE', 1, 15), -- envoys
 ('RooseveltAltPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_BONUS', 1, 15), -- good relations
-('RooseveltAltUnitBuilds', 'PSEUDOYIELD_UNIT_TRADE',  1, 25), -- traders
+('RooseveltAltPseudoYields', 'PSEUDOYIELD_UNIT_TRADE',  1, 25), -- traders
 ('RooseveltAltDiploActions', 'DIPLOACTION_GRANT_INFLUENCE_TOKEN', 1, 0); -- suze all city states!

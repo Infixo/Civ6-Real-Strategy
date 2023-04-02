@@ -305,6 +305,10 @@ WHERE ImprovementType = 'IMPROVEMENT_TERRACE_FARM'
 -- LEADER_SULEIMAN / OTTOMAN
 -- happiness, loyalty
 
+UPDATE AiFavoredItems SET Item = 'TECH_GUNPOWDER' WHERE Item = 'TECH_GUNPOWER'; -- SuliemanTechs
+UPDATE AiFavoredItems SET ListType = 'SuliemanCivics' WHERE ListType = 'SuliemanTechs' AND Item = 'CIVIC_GAMES_RECREATION';
+UPDATE AiLists SET System = 'PseudoYields' WHERE ListType = 'SuliemanGovernor' AND System = 'Buildings';
+
 -- 2019-04-04 AggressivePseudoYields
 INSERT OR REPLACE INTO LeaderTraits(LeaderType, TraitType) VALUES ('LEADER_SULEIMAN', 'TRAIT_LEADER_AGGRESSIVE_MILITARY');
 

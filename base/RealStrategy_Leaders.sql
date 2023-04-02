@@ -875,6 +875,11 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value)
 SELECT 'VictoriaWonders', 'BUILDING_STATUE_LIBERTY', 1, 0
 FROM Types WHERE Type = 'BUILDING_STATUE_LIBERTY';
 
+-- 2023-04-02 why the heck does she need military engineers?
+DELETE FROM AiFavoredItems WHERE ListType = 'VictoriaUnits';
+DELETE FROM AiLists WHERE ListType = 'VictoriaUnits';
+DELETE FROM AiListTypes WHERE ListType = 'VictoriaUnits';
+
 
 /*
 Can this be used to gain army size (catch up mechanic)?

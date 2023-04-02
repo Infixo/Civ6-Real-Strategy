@@ -218,8 +218,15 @@ INSERT INTO AiFavoredItems(ListType, Item, Value) VALUES
 ('PerWarOperationsLimits', 'OP_PILLAGE', 1);
 
 
--- Units are put after Slush fund, weird...
-UPDATE AiFavoredItems SET Value = 2 WHERE ListType = 'DefaultSavings' AND Item = 'SAVING_UNITS';
+--------------------------------------------------------------
+-- This was an odd one. Gold for units was set to 4, gold for plots and GPs was set to 1, and gold for splurge was set to 3.
+-- Splurge should always be last in the priority list, so I assumed priority went lowest->highest and set gold for units to 2. -->
+-- 2023-03-29 Comment from devs in Civ Battle Royale is "The following puts all gold into slush funds [...]" and slush fund has priority 1
+-- Most reasonable order: great peoppe -> plots -> units -> slush
+UPDATE AiFavoredItems SET Value = 1 WHERE ListType = 'DefaultSavings' AND Item = 'SAVING_GREAT_PEOPLE';
+UPDATE AiFavoredItems SET Value = 2 WHERE ListType = 'DefaultSavings' AND Item = 'SAVING_PLOTS';
+UPDATE AiFavoredItems SET Value = 3 WHERE ListType = 'DefaultSavings' AND Item = 'SAVING_UNITS';
+UPDATE AiFavoredItems SET Value = 4 WHERE ListType = 'DefaultSavings' AND Item = 'SAVING_SLUSH_FUND';
 
 
 --------------------------------------------------------------
@@ -1086,7 +1093,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('RSTScienceDistricts', 'DISTRICT_CAMPUS', 1, 0),
 ('RSTScienceYields', 'YIELD_SCIENCE',    1, 25),
 --('RSTSciencePseudoYields', 'PSEUDOYIELD_TECHNOLOGY', 1, 25),
-('RSTScienceYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 25),
+('RSTSciencePseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 25),
 -- More Culture
 ('RSTCultureDistricts', 'DISTRICT_THEATER', 1, 0),
 ('RSTCultureYields', 'YIELD_CULTURE', 1, 25),
