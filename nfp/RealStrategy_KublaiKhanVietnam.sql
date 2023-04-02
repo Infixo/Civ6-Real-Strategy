@@ -44,24 +44,20 @@ INSERT INTO RSTFlavors (ObjectType, Type, Subtype, Strategy, Value) VALUES
 ('LEADER_KUBLAI_KHAN_CHINA', 'LEADER', '', 'RELIGION', 1),
 ('LEADER_KUBLAI_KHAN_CHINA', 'LEADER', '', 'DIPLO',    4);
 
-INSERT INTO Types (Type, Kind) VALUES
-('TRAIT_LEADER_KUBLAI_CHINA', 'KIND_TRAIT');
-
-INSERT INTO Traits (TraitType, InternalOnly) VALUES
-('TRAIT_LEADER_KUBLAI_CHINA', 0);
-
-INSERT INTO LeaderTraits (LeaderType, TraitType) VALUES
-('LEADER_KUBLAI_KHAN_CHINA', 'TRAIT_LEADER_KUBLAI_CHINA');
-
-INSERT INTO AiListTypes (ListType) VALUES
-('KublaiChinaPseudoYields');
-
-INSERT INTO AiLists (ListType, LeaderType, System) VALUES
-('KublaiChinaPseudoYields', 'TRAIT_LEADER_KUBLAI_CHINA', 'PseudoYields');
-
-INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
-('KublaiChinaPseudoYields', 'PSEUDOYIELD_WONDER', 1, 25),
-('KublaiChinaPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 20);
+-- 2023-04-02 China common
+--INSERT INTO Types (Type, Kind) VALUES
+--('TRAIT_LEADER_KUBLAI_CHINA', 'KIND_TRAIT');
+--INSERT INTO Traits (TraitType, InternalOnly) VALUES
+--('TRAIT_LEADER_KUBLAI_CHINA', 0);
+--INSERT INTO LeaderTraits (LeaderType, TraitType) VALUES
+--('LEADER_KUBLAI_KHAN_CHINA', 'TRAIT_LEADER_KUBLAI_CHINA');
+--INSERT INTO AiListTypes (ListType) VALUES
+--('KublaiChinaPseudoYields');
+--INSERT INTO AiLists (ListType, LeaderType, System) VALUES
+--('KublaiChinaPseudoYields', 'TRAIT_LEADER_KUBLAI_CHINA', 'PseudoYields');
+--INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
+--('KublaiChinaPseudoYields', 'PSEUDOYIELD_WONDER', 1, 25),
+--('KublaiChinaPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 20);
 
 
 

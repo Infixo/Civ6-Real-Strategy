@@ -681,18 +681,42 @@ UPDATE StartBiasTerrains SET Tier = 4 WHERE CivilizationType = 'CIVILIZATION_SPA
 	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
--- LEADER_QIN / CHINA
+-- LEADER_QIN / CHINA / FIRST_EMPEROR_TRAIT
 
 DELETE FROM LeaderTraits WHERE LeaderType = 'LEADER_QIN' AND TraitType = 'TRAIT_LEADER_CULTURAL_MAJOR_CIV'; -- 210623 not needed
+-- 2023-04-02 China common
+DELETE FROM AiFavoredItems WHERE ListType = 'QinTechs';
+DELETE FROM AiLists WHERE ListType = 'QinTechs';
+DELETE FROM AiListTypes WHERE ListType = 'QinTechs';
+
+-- 2023-04-02 China common
+--INSERT INTO AiListTypes (ListType) VALUES
+--('QinPseudoYields');
+--INSERT INTO AiLists (ListType, LeaderType, System) VALUES
+--('QinPseudoYields', 'FIRST_EMPEROR_TRAIT', 'PseudoYields');
+--INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
+--('QinCivics', 'CIVIC_CRAFTSMANSHIP', 1, 0),
+--('QinPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- great wall
+--('QinPseudoYields', 'PSEUDOYIELD_TOURISM', 1, 15);
+
+-- 2023-04-02 Separate AI for China as there are already 5 leaders, to have common behavior and avoid redundancy
 
 INSERT INTO AiListTypes (ListType) VALUES
-('QinPseudoYields');
+('ChinaTechs'),
+('ChinaPseudoYields');
 INSERT INTO AiLists (ListType, LeaderType, System) VALUES
-('QinPseudoYields', 'FIRST_EMPEROR_TRAIT', 'PseudoYields');
+('ChinaTechs',        'TRAIT_CIVILIZATION_DYNASTIC_CYCLE', 'Technologies'),
+('ChinaPseudoYields', 'TRAIT_CIVILIZATION_DYNASTIC_CYCLE', 'PseudoYields');
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
---('QinCivics', 'CIVIC_CRAFTSMANSHIP', 1, 0),
-('QinPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- great wall
-('QinPseudoYields', 'PSEUDOYIELD_TOURISM', 1, 15);
+('ChinaTechs', 'TECH_MASONRY',   1, 0),
+('ChinaTechs', 'TECH_CASTLES',   1, 0),
+('ChinaTechs', 'TECH_MACHINERY', 1, 0),
+('ChinaTechs', 'TECH_FLIGHT',    1, 0),
+('ChinaPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15),
+('ChinaPseudoYields', 'PSEUDOYIELD_WONDER',      1, 15),
+('ChinaPseudoYields', 'PSEUDOYIELD_TOURISM',     1, 10),
+('ChinaPseudoYields', 'PSEUDOYIELD_CITY_BASE',   1, -25);
+
 
 
 -- LEADER_SALADIN / ARABIA
