@@ -76,10 +76,14 @@
 			<LeaderPlayable>Players:StandardPlayers::LEADER_NZINGA_MBANDE,StandardPlayers::LEADER_NZINGA_MBANDE,Players:Expansion1_Players::LEADER_NZINGA_MBANDE,Players:Expansion2_Players::LEADER_NZINGA_MBANDE</LeaderPlayable>
 			<LeaderPlayable>Players:StandardPlayers::LEADER_SALADIN_ALT,StandardPlayers::LEADER_SALADIN_ALT,Players:Expansion1_Players::LEADER_SALADIN_ALT,Players:Expansion2_Players::LEADER_SALADIN_ALT</LeaderPlayable>
 		</Criteria>
-		<Criteria id="DLCGreatWarlords">	<!-- 2022-12-15 -->
-			<LeaderPlayable>Players:StandardPlayers::LEADER_TOKUGAWA,Players:Expansion1_Players::LEADER_TOKUGAWA,Players:Expansion2_Players::LEADER_TOKUGAWA</LeaderPlayable>
+		<Criteria id="DLCGreatWarlords_Nader">		<!-- 2022-12-15 -->
 			<LeaderPlayable>Players:StandardPlayers::LEADER_NADER_SHAH,Players:Expansion1_Players::LEADER_NADER_SHAH,Players:Expansion2_Players::LEADER_NADER_SHAH</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCGreatWarlords_Suleiman">	<!-- 2022-12-15 -->
 			<LeaderPlayable>Players:Expansion2_Players::LEADER_SULEIMAN_ALT</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCGreatWarlords_Tokugawa">	<!-- 2022-12-15 -->
+			<LeaderPlayable>Players:StandardPlayers::LEADER_TOKUGAWA,Players:Expansion1_Players::LEADER_TOKUGAWA,Players:Expansion2_Players::LEADER_TOKUGAWA</LeaderPlayable>
 		</Criteria>
 		<Criteria id="DLCRulersOfChina">	<!-- 2023-01-19 -->
 			<LeaderPlayable>Players:StandardPlayers::LEADER_YONGLE,Players:Expansion1_Players::LEADER_YONGLE,Players:Expansion2_Players::LEADER_YONGLE</LeaderPlayable>
@@ -196,27 +200,35 @@
 			<File>lp/RealStrategy_JuliusCaesar.sql</File>
 		</UpdateDatabase>
 		<UpdateDatabase id="RST_DB_GreatNegotiators" criteria="DLCGreatNegotiators">
-			<Properties><LoadOrder>351</LoadOrder></Properties>
+			<Properties><LoadOrder>360</LoadOrder></Properties>
 			<File>lp/RealStrategy_GreatNegotiators.sql</File>
 		</UpdateDatabase>
-		<UpdateDatabase id="RST_DB_GreatWarlords" criteria="DLCGreatWarlords">
-			<Properties><LoadOrder>352</LoadOrder></Properties>
-			<File>lp/RealStrategy_GreatWarlords.sql</File>
+		<UpdateDatabase id="RST_DB_GreatWarlords" criteria="DLCGreatWarlords_Nader">
+			<Properties><LoadOrder>370</LoadOrder></Properties>
+			<File>lp/RealStrategy_GreatWarlords_Nader.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_GreatWarlords" criteria="DLCGreatWarlords_Suleiman">
+			<Properties><LoadOrder>371</LoadOrder></Properties>
+			<File>lp/RealStrategy_GreatWarlords_Suleiman.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_GreatWarlords" criteria="DLCGreatWarlords_Tokugawa">
+			<Properties><LoadOrder>372</LoadOrder></Properties>
+			<File>lp/RealStrategy_GreatWarlords_Tokugawa.sql</File>
 		</UpdateDatabase>
 		<UpdateDatabase id="RST_DB_RulersOfChina" criteria="DLCRulersOfChina">
-			<Properties><LoadOrder>353</LoadOrder></Properties>
+			<Properties><LoadOrder>380</LoadOrder></Properties>
 			<File>lp/RealStrategy_RulersOfChina.sql</File>
 		</UpdateDatabase>
 		<UpdateDatabase id="RST_DB_RulersOfTheSahara" criteria="DLCRulersOfTheSahara">
-			<Properties><LoadOrder>354</LoadOrder></Properties>
+			<Properties><LoadOrder>390</LoadOrder></Properties>
 			<File>lp/RealStrategy_RulersOfTheSahara.sql</File>
 		</UpdateDatabase>
 		<UpdateDatabase id="RST_DB_GreatBuilders" criteria="DLCGreatBuilders">
-			<Properties><LoadOrder>355</LoadOrder></Properties>
+			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<File>lp/RealStrategy_GreatBuilders.sql</File>
 		</UpdateDatabase>
 		<UpdateDatabase id="RST_DB_RulersOfEngland" criteria="DLCRulersOfEngland">
-			<Properties><LoadOrder>356</LoadOrder></Properties>
+			<Properties><LoadOrder>410</LoadOrder></Properties>
 			<File>lp/RealStrategy_RulersOfEngland.sql</File>
 		</UpdateDatabase>
 		<AddUserInterfaces id="RST_Interfaces">
@@ -258,7 +270,9 @@
         <File>nfp/RealStrategy_Portugal.sql</File>
 		<File>lp/RealStrategy_JuliusCaesar.sql</File>
         <File>lp/RealStrategy_GreatNegotiators.sql</File>
-        <File>lp/RealStrategy_GreatWarlords.sql</File>
+        <File>lp/RealStrategy_GreatWarlords_Nader.sql</File>
+        <File>lp/RealStrategy_GreatWarlords_Suleiman.sql</File>
+        <File>lp/RealStrategy_GreatWarlords_Tokugawa.sql</File>
         <File>lp/RealStrategy_RulersOfChina.sql</File>
         <File>lp/RealStrategy_RulersOfTheSahara.sql</File>
         <File>lp/RealStrategy_GreatBuilders.sql</File>

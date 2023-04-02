@@ -296,7 +296,7 @@ WHERE ImprovementType = 'IMPROVEMENT_TERRACE_FARM'
 	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
--- LEADER_SULEIMAN
+-- LEADER_SULEIMAN / OTTOMAN
 -- happiness, loyalty
 
 -- 2019-04-04 AggressivePseudoYields

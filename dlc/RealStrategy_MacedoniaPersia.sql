@@ -68,4 +68,4 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('CyrusPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- pairidaeza
 ('CyrusPseudoYields', 'PSEUDOYIELD_TOURISM', 1, 10),
 --('CyrusPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, 15),
-('CyrusPseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 50);
+('CyrusPseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 30);
