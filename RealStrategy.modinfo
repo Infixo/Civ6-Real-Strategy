@@ -18,16 +18,17 @@
 			<GameCoreInUse>Expansion2</GameCoreInUse> 
 		</Criteria>
 		<Criteria id="DLCAztec">			<!-- 2016-11-19 -->
-			<LeaderPlayable>Players:StandardPlayers::LEADER_MONTEZUMA,StandardPlayers::LEADER_MONTEZUMA,Players:Expansion1_Players::LEADER_MONTEZUMA,Players:Expansion2_Players::LEADER_MONTEZUMA</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_MONTEZUMA,Players:Expansion1_Players::LEADER_MONTEZUMA,Players:Expansion2_Players::LEADER_MONTEZUMA</LeaderPlayable>
 		</Criteria>
 		<Criteria id="DLCPoland">			<!-- 2016-12-20 -->
-			<LeaderPlayable>Players:StandardPlayers::LEADER_JADWIGA,StandardPlayers::LEADER_JADWIGA,Players:Expansion1_Players::LEADER_JADWIGA,Players:Expansion2_Players::LEADER_JADWIGA</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_JADWIGA,Players:Expansion1_Players::LEADER_JADWIGA,Players:Expansion2_Players::LEADER_JADWIGA</LeaderPlayable>
 		</Criteria>
 		<Criteria id="DLCAustralia">		<!-- 2017-02-23 -->
-			<LeaderPlayable>Players:StandardPlayers::LEADER_JOHN_CURTIN,StandardPlayers::LEADER_JOHN_CURTIN,Players:Expansion1_Players::LEADER_JOHN_CURTIN,Players:Expansion2_Players::LEADER_JOHN_CURTIN</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_JOHN_CURTIN,Players:Expansion1_Players::LEADER_JOHN_CURTIN,Players:Expansion2_Players::LEADER_JOHN_CURTIN</LeaderPlayable>
 		</Criteria>
 		<Criteria id="DLCMacedoniaPersia">	<!-- 2017-03-28 -->
-			<LeaderPlayable>Players:StandardPlayers::LEADER_ALEXANDER,Players:StandardPlayers::LEADER_CYRUS,StandardPlayers::LEADER_ALEXANDER,StandardPlayers::LEADER_CYRUS,Players:Expansion1_Players::LEADER_ALEXANDER,Players:Expansion1_Players::LEADER_CYRUS,Players:Expansion2_Players::LEADER_ALEXANDER,Players:Expansion2_Players::LEADER_CYRUS</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_ALEXANDER,Players:Expansion1_Players::LEADER_ALEXANDER,Players:Expansion2_Players::LEADER_ALEXANDER</LeaderPlayable>
+			<LeaderPlayable>Players:StandardPlayers::LEADER_CYRUS,Players:Expansion1_Players::LEADER_CYRUS,Players:Expansion2_Players::LEADER_CYRUS</LeaderPlayable>
 		</Criteria>
 		<Criteria id="DLCNubia">			<!-- 2017-07-27 -->
 			<LeaderPlayable>Players:StandardPlayers::LEADER_AMANITORE,StandardPlayers::LEADER_AMANITORE,Players:Expansion1_Players::LEADER_AMANITORE,Players:Expansion2_Players::LEADER_AMANITORE</LeaderPlayable>
@@ -97,9 +98,13 @@
 		<Criteria id="DLCRulersOfTheSahara_Sundiata"><!-- 2023-02-16 -->
 			<LeaderPlayable>Players:Expansion2_Players::LEADER_SUNDIATA_KEITA</LeaderPlayable>
 		</Criteria>
-		<Criteria id="DLCGreatBuilders">	<!-- 2023-03-15 -->
+		<Criteria id="DLCGreatBuilders_Theodora"><!-- 2023-03-15 -->
 			<LeaderPlayable>Players:StandardPlayers::LEADER_THEODORA,Players:Expansion1_Players::LEADER_THEODORA,Players:Expansion2_Players::LEADER_THEODORA</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCGreatBuilders_Ludwig"><!-- 2023-03-15 -->
 			<LeaderPlayable>Players:StandardPlayers::LEADER_LUDWIG,Players:Expansion1_Players::LEADER_LUDWIG,Players:Expansion2_Players::LEADER_LUDWIG</LeaderPlayable>
+		</Criteria>
+		<Criteria id="DLCGreatBuilders_Sejong"><!-- 2023-03-15 -->
 			<LeaderPlayable>Players:Expansion1_Players::LEADER_SEJONG, Players:Expansion2_Players::LEADER_SEJONG</LeaderPlayable>
 		</Criteria>
 		<Criteria id="DLCRulersOfEngland">	<!-- 2023-03-29 -->
@@ -229,9 +234,17 @@
 			<Properties><LoadOrder>391</LoadOrder></Properties>
 			<File>lp/RealStrategy_RulersOfTheSahara_Sundiata.sql</File>
 		</UpdateDatabase>
-		<UpdateDatabase id="RST_DB_GreatBuilders" criteria="DLCGreatBuilders">
+		<UpdateDatabase id="RST_DB_GreatBuilders" criteria="DLCGreatBuilders_Theodora">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
-			<File>lp/RealStrategy_GreatBuilders.sql</File>
+			<File>lp/RealStrategy_GreatBuilders_Theodora.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_GreatBuilders" criteria="DLCGreatBuilders_Ludwig">
+			<Properties><LoadOrder>401</LoadOrder></Properties>
+			<File>lp/RealStrategy_GreatBuilders_Ludwig.sql</File>
+		</UpdateDatabase>
+		<UpdateDatabase id="RST_DB_GreatBuilders" criteria="DLCGreatBuilders_Sejong">
+			<Properties><LoadOrder>402</LoadOrder></Properties>
+			<File>lp/RealStrategy_GreatBuilders_Sejong.sql</File>
 		</UpdateDatabase>
 		<UpdateDatabase id="RST_DB_RulersOfEngland" criteria="DLCRulersOfEngland">
 			<Properties><LoadOrder>410</LoadOrder></Properties>
@@ -282,7 +295,9 @@
         <File>lp/RealStrategy_RulersOfChina.sql</File>
         <File>lp/RealStrategy_RulersOfTheSahara.sql</File>
         <File>lp/RealStrategy_RulersOfTheSahara_Sundiata.sql</File>
-        <File>lp/RealStrategy_GreatBuilders.sql</File>
+        <File>lp/RealStrategy_GreatBuilders_Theodora.sql</File>
+        <File>lp/RealStrategy_GreatBuilders_Ludwig.sql</File>
+        <File>lp/RealStrategy_GreatBuilders_Sejong.sql</File>
         <File>lp/RealStrategy_RulersOfEngland.sql</File>
 		<File>Lua/RealStrategy.lua</File>
 		<!--<File>Lua/RealStrategy_GreatPeople.lua</File>-->
