@@ -63,7 +63,9 @@ INSERT INTO RSTFlavors (ObjectType, Type, Subtype, Strategy, Value) VALUES
 ('LEADER_SIMON_BOLIVAR', 'LEADER', '', 'SCIENCE',  2),
 ('LEADER_SIMON_BOLIVAR', 'LEADER', '', 'CULTURE',  2),
 ('LEADER_SIMON_BOLIVAR', 'LEADER', '', 'RELIGION', 1),
-('LEADER_SIMON_BOLIVAR', 'LEADER', '', 'DIPLO',    1);
+('LEADER_SIMON_BOLIVAR', 'LEADER', '', 'DIPLO',    1),
+-- 230418 Unique Great General
+('GREAT_PERSON_CLASS_COMANDANTE_GENERAL', 'GreatPerson', '', 'CONQUEST', 5);
 
 -- AggressivePseudoYields for non-XP leaders
 INSERT OR REPLACE INTO LeaderTraits(LeaderType, TraitType) VALUES ('LEADER_SIMON_BOLIVAR', 'TRAIT_LEADER_AGGRESSIVE_MILITARY');
