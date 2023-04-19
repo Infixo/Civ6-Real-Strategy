@@ -24,4 +24,5 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('TokugawaSettlement', 'Nearest Friendly City', 0, -2), -- compact empire
 ('TokugawaPseudoYields', 'PSEUDOYIELD_DISTRICT',   1, 20), -- build a lot of districts
 ('TokugawaPseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 10), -- we like internal TRs
-('TokugawaPseudoYields', 'PSEUDOYIELD_CITY_BASE',  1, -50); -- not interested in conquest
+('TokugawaPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, 100), -- not interested in conquest
+('TokugawaPseudoYields', 'PSEUDOYIELD_CITY_BASE',     1, -100); -- not interested in conquest

@@ -216,10 +216,10 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_COMBAT',       1, 15), -- 25
 ('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, 10), -- 25
 ('AggressivePseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT',   1, 15), -- 25
-('AggressivePseudoYields', 'PSEUDOYIELD_CITY_BASE',            1,  50), -- 40
-('AggressivePseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, -100), -- 2023-04-01 #23 test
-('AggressivePseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -10), -- -10
-('AggressivePseudoYields', 'PSEUDOYIELD_CITY_DEFENSES',        1, -25), -- -25
+-- 230419 #31 update CITY pseudos
+('AggressivePseudoYields', 'PSEUDOYIELD_CITY_BASE',            1,  25), -- 40
+('AggressivePseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -15), -- -10
+('AggressivePseudoYields', 'PSEUDOYIELD_CITY_DEFENSES',        1, -15), -- -25
 ('AggressivePseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, 10), -- 50 naval warfare is still not good, no point to have more of them
 ('AggressivePseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1, 15); -- 50
 
@@ -291,8 +291,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('BarbarossaYields', 'YIELD_FAITH',      1,-20),
 ('BarbarossaYields', 'YIELD_GOLD',       1, 10),
 ('BarbarossaYields', 'YIELD_PRODUCTION', 1, 10),
-('BarbarossaPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -25),
-('BarbarossaPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, 100), -- more focus on Minors
+('BarbarossaPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, -50), -- more focus on Minors
 ('BarbarossaPseudoYields', 'PSEUDOYIELD_DISTRICT', 1, 15), -- more districts
 ('BarbarossaPseudoYields', 'PSEUDOYIELD_GPP_PROPHET',  1,-25),
 ('BarbarossaPseudoYields', 'PSEUDOYIELD_GPP_MERCHANT', 1, 10), -- boost comm hubs
@@ -368,7 +367,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('PeacekeeperWarLimits', 'DIPLOACTION_RENEW_ALLIANCE', 1, 0), -- peace!
 ('PeacekeeperWarLimits', 'DIPLOACTION_RESIDENT_EMBASSY', 1, 0), -- peace
 ('GandhiPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
-('GandhiPseudoYields', 'PSEUDOYIELD_CITY_POPULATION', 1, -100), -- do NOT conquer neighbors
 ('GandhiPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 20),
 ('GandhiPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, 10),
 ('GandhiPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, -15), -- obvious
@@ -638,7 +636,6 @@ INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('PedroCivics', 'CIVIC_NATURAL_HISTORY', 1, 0),
 ('PedroPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
-('PedroPseudoYields', 'PSEUDOYIELD_CITY_POPULATION', 1, -100), -- do NOT conquer neighbors
 ('PedroPseudoYields', 'PSEUDOYIELD_ENVIRONMENT', 1, 20), -- leave jungle
 ('PedroPseudoYields', 'PSEUDOYIELD_UNIT_RELIGIOUS', 1, -25), -- use faith for GP
 ('PedroPseudoYields', 'PSEUDOYIELD_WONDER', 1, -25);
@@ -774,6 +771,7 @@ UPDATE StartBiasResources SET Tier = 4 WHERE CivilizationType = 'CIVILIZATION_SC
 	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
+
 -- LEADER_TRAJAN / ROME
 -- expansionist, but no changes to PlotEvaluations - does it actually work?
 -- they should be within trade range of the capital - how many tiles is that? - 15 tiles, well enough...
@@ -791,12 +789,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('TrajanSettlement', 'Nearest Friendly City', 0, -1),
 ('TrajanSettlement', 'Fresh Water', 0, -10),
 -- 2023-04-01 Trajan is no more conquer focus, Ceasar is now (and he gets Aggressive traits)
---('TrajanPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 50),
---('TrajanPseudoYields', 'PSEUDOYIELD_CITY_POPULATION', 1, -25),
---('TrajanPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, -50),
---('TrajanPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -15),
---('TrajanPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -15),
---('TrajanPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 20), -- moved to Rome
 ('TrajanPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, 15); -- more crappy cities
 
 -- Rise & Fall
@@ -948,8 +940,8 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('DarwinistEnjoysWarDiplomacy', 'DIPLOACTION_DECLARE_SURPRISE_WAR', 1, 0),
 ('DarwinistEnjoysWarDiplomacy', 'DIPLOACTION_JOINT_WAR', 1, 0),
 ('DarwinistEnjoysWarDiplomacy', 'DIPLOACTION_THIRD_PARTY_WAR', 1, 0),
-('DarwinistEnjoysWarPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -15),
-('DarwinistEnjoysWarPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -15),
+('DarwinistEnjoysWarPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -25),
+('DarwinistEnjoysWarPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -25),
 ('DarwinistEnjoysWarPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, 10),
 ('DarwinistEnjoysWarPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_VALUE', 1, 15);
 INSERT INTO AiFavoredItems (ListType, Item, Favored)

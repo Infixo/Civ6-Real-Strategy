@@ -26,4 +26,4 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('SuliemanAltYields', 'YIELD_FAITH', 1, -20),
 ('SuliemanAltPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, -25),
 ('SuliemanAltPseudoYields', 'PSEUDOYIELD_GOLDENAGE_POINT', 1, 20),
-('SuliemanAltPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -10); -- we have bombards
+('SuliemanAltPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -50); -- base 40, we have bombards

@@ -159,9 +159,10 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('AntiMilitaryPseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT', 1, -20),
 ('AntiMilitaryPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, -15),
 ('AntiMilitaryPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_VALUE', 1, -25),
-('AntiMilitaryPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, -200),
-('AntiMilitaryPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, 10),
-('AntiMilitaryPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, 10),
+('AntiMilitaryPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100),
+('AntiMilitaryPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, 100),
+('AntiMilitaryPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, 100),
+('AntiMilitaryPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, 100),
 ('AntiMilitaryPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, -20),
 ('AntiMilitaryPseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1, -20),
 ('AntiMilitaryWonders', 'BUILDING_TERRACOTTA_ARMY', 0, 0);

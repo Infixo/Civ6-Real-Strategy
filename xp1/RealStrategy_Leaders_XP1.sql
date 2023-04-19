@@ -99,6 +99,7 @@ INSERT INTO RSTFlavors (ObjectType, Type, Subtype, Strategy, Value) VALUES -- ge
 -- LEADERS
 -- ===========================================================================
 
+
 -- LEADER_CHANDRAGUPTA / INDIA
 -- CHANDRAGUPTA: does not like his neighbors :(
 -- TODO: similar expansionist trait to Trajan, to forward settle a bit more maybe?
@@ -115,13 +116,10 @@ INSERT INTO AiListTypes (ListType) VALUES
 INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('ChandraguptaPseudoYields', 'TRAIT_LEADER_ARTHASHASTRA', 'PseudoYields');
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
---('ChandraguptaPseudoYields', 'PSEUDOYIELD_CITY_BASE',       1, 50), -- conquer neighbors, TRAIT_LEADER_AGGRESSIVE_MILITARY
---('ChandraguptaPseudoYields', 'PSEUDOYIELD_CITY_POPULATION', 1, 50), -- conquer neighbors, TRAIT_LEADER_AGGRESSIVE_MILITARY
---('ChandraguptaPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES',   1,-10), -- conquer neighbors, TRAIT_LEADER_AGGRESSIVE_MILITARY
---('ChandraguptaPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT',     1, 15), -- obvious, TRAIT_LEADER_AGGRESSIVE_MILITARY
 ('ChandraguptaPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, -20),
 ('ChandraguptaPseudoYields', 'PSEUDOYIELD_UNIT_RELIGIOUS', 1, -15), -- to differ from Gandhi
 ('ChandraguptaPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_BONUS', 1, -25); -- conquer neighbors
+
 
 
 -- LEADER_GENGHIS_KHAN / MONGOLIA
@@ -142,19 +140,13 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('MongoliaDisfavorBarracks', 'BUILDING_BARRACKS', 0, 0), -- let him not build Barracks, so he will build Ordu
 ('GenghisCivics', 'CIVIC_DIPLOMATIC_SERVICE', 1, 0),
 ('GenghisPseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 50),
--- some tweaks to balance AggressivePseudoYields, similar to Shaka
---('GenghisPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT',       1, 15),
 ('GenghisPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, -10),
---('GenghisPseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT',   1, 15),
-('GenghisPseudoYields', 'PSEUDOYIELD_CITY_BASE',            1, 100), -- DO conquer neighbors
-('GenghisPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -10),
-('GenghisPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES',        1, -15), -- DO conquer neighbors
 ('GenghisPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, -10);
---('GenghisPseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1,  15);
 
 -- 2019-04-04 start bias
 UPDATE StartBiasResources SET Tier = 3 WHERE CivilizationType = 'CIVILIZATION_MONGOLIA' AND ResourceType = 'RESOURCE_HORSES'
 	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
+
 
 
 -- LEADER_LAUTARO / MAPUCHE
@@ -164,8 +156,6 @@ INSERT INTO AiListTypes (ListType) VALUES
 INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('LautaroPseudoYields', 'TRAIT_LEADER_LAUTARO_ABILITY', 'PseudoYields');
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
-('LautaroPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 50),
-('LautaroPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -10),
 ('LautaroPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- chemamull
 ('LautaroPseudoYields', 'PSEUDOYIELD_ENVIRONMENT', 1, 20),
 ('LautaroPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, 10);
@@ -184,7 +174,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('PoundmakerCivics', 'CIVIC_FOREIGN_TRADE', 1, 0),
 ('PoundmakerCivics', 'CIVIC_MERCENARIES', 1, 0),
 ('PoundmakerPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
-('PoundmakerPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, 15), -- do NOT conquer neighbors
 ('PoundmakerPseudoYields', 'PSEUDOYIELD_UNIT_EXPLORER', 1, 10),
 ('PoundmakerPseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 50),
 ('PoundmakerPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- mekewap
@@ -219,25 +208,19 @@ DELETE FROM LeaderTraits WHERE LeaderType = 'LEADER_SEONDEOK' AND TraitType = 'T
 
 
 -- LEADER_SHAKA / ZULU
--- UPDATE AiFavoredItems SET Value = 15 WHERE ListType = 'AggressivePseudoYields' AND Item = 'PSEUDOYIELD_UNIT_NAVAL_COMBAT'; -- used by Shaka & Genghis
 
 -- 2019-04-04 AggressivePseudoYields
 INSERT OR REPLACE INTO LeaderTraits(LeaderType, TraitType) VALUES ('LEADER_SHAKA', 'TRAIT_LEADER_AGGRESSIVE_MILITARY');
 
--- balance for toned down AggressivePseudoYields
 INSERT INTO AiListTypes (ListType) VALUES
 ('ShakaPseudoYields');
 INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('ShakaPseudoYields', 'TRAIT_LEADER_AMABUTHO', 'PseudoYields');
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
---('ShakaPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT',       1, 15),
-('ShakaPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1,-10),
---('ShakaPseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT',   1, 15),
-('ShakaPseudoYields', 'PSEUDOYIELD_CITY_BASE',            1, 100),
-('ShakaPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -10),
-('ShakaPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES',        1, -15),
+-- 230419 he has AggressivePseudoYields, remove naval focus
+('ShakaPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, -10),
 ('ShakaPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, -10);
---('ShakaPseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1,  15);
+
 
 
 -- LEADER_TAMAR / GEORGIA

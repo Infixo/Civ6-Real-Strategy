@@ -36,13 +36,8 @@ INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('MontezumaTechs', 'TECH_MINING',     1, 0), -- most luxes are here -- !BUGGED!
 ('MontezumaTechs', 'TECH_IRRIGATION', 1, 0), -- most luxes are here -- !BUGEGD!
-('MontezumaPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 50), -- this.. is.. MONTY!
-('MontezumaPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -10), -- we need those builders, TRAIT_LEADER_AGGRESSIVE_MILITARY
---('MontezumaPseudoYields', 'PSEUDOYIELD_CITY_ORIGINAL_CAPITAL', 1, 50),
---('MontezumaPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, 15), -- TRAIT_LEADER_AGGRESSIVE_MILITARY
 ('MontezumaPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, -10), -- to balance TRAIT_LEADER_AGGRESSIVE_MILITARY
 ('MontezumaPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, -10), -- to balance TRAIT_LEADER_AGGRESSIVE_MILITARY
---('MontezumaPseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1, 15), -- TRAIT_LEADER_AGGRESSIVE_MILITARY
 ('MontezumaPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, -50),
 ('MontezumaPseudoYields', 'PSEUDOYIELD_DISTRICT', 1, 15), -- more districts
 ('MontezumaPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, 10), -- vanilla 1, RFX 1.2

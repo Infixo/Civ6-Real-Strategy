@@ -20,5 +20,5 @@ INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('NaderPseudoYields', 'TRAIT_LEADER_NADER_SHAH', 'PseudoYields');
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('NaderPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- pairidaeza
-('NaderPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -20),
+('NaderPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -25), -- base 100
 ('NaderPseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 30);

@@ -302,6 +302,7 @@ WHERE ImprovementType = 'IMPROVEMENT_TERRACE_FARM'
 	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
+
 -- LEADER_SULEIMAN / OTTOMAN
 -- happiness, loyalty
 
@@ -329,9 +330,8 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('SuliemanYields', 'YIELD_FAITH', 1, -20),
 ('SuliemanPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, -25),
 ('SuliemanPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 20),
---('SuliemanPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 100), -- siege cities, AggresivePseudoYields
-('SuliemanPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -10); -- we have bombards
---('SuliemanPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, 15); -- AggresivePseudoYields
+('SuliemanPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, -50); -- base 40, we have bombards
+
 
 
 -- LEADER_VICTORIA / ENGLAND

@@ -52,7 +52,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('AmbiorixUnitBuilds', 'PROMOTION_CLASS_ANTI_CAVALRY', 1, 15);
 
 -- 2021-06-23 Firaxis added this Trait twice, despite its own warnings... :)
-DELETE FROM LeaderTraits WHERE LeaderType = 'LEADER_AMBIORIX' AND TraitType = 'TRAIT_LEADER_AGGRESSIVE_MILITARY';
+DELETE FROM AgendaTraits WHERE AgendaType = 'AGENDA_AMBIORIX_ARMY' AND TraitType = 'TRAIT_LEADER_AGGRESSIVE_MILITARY';
 
 
 
@@ -60,6 +60,9 @@ DELETE FROM LeaderTraits WHERE LeaderType = 'LEADER_AMBIORIX' AND TraitType = 'T
 -- TRAIT_LEADER_BASIL
 -- Tagma @ Divine Right
 -- holy city converted, holy sites, heavy and light cav
+
+-- 230419 AggressivePseudoYields, he should be an aggressive leader clearly
+INSERT OR REPLACE INTO LeaderTraits(LeaderType, TraitType) VALUES ('LEADER_BASIL', 'TRAIT_LEADER_AGGRESSIVE_MILITARY');
 
 INSERT INTO RSTFlavors (ObjectType, Type, Subtype, Strategy, Value) VALUES
 ('LEADER_BASIL', 'LEADER', '', 'CONQUEST', 7),
