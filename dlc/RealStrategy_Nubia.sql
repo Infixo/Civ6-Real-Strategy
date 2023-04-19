@@ -2,6 +2,7 @@
 -- Real Strategy - main file for Nubia DLC
 -- Author: Infixo
 -- 2019-01-05: Created
+-- 2023-04-19: Removal of Start Biases, use Real Fixes or Better Balance Start
 -- ===========================================================================
 
 -- iOS compatibility
@@ -55,18 +56,3 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value)
 SELECT 'AmanitoreWonders', 'BUILDING_KOTOKU_IN', 1, 0
 FROM Types WHERE Type = 'BUILDING_KOTOKU_IN';
-
--- 2019-04-04 start bias
-INSERT OR REPLACE INTO StartBiasFeatures (CivilizationType, FeatureType, Tier)
-SELECT CivilizationType, 'FEATURE_FLOODPLAINS', 5
-FROM Civilizations
-WHERE CivilizationType = 'CIVILIZATION_NUBIA'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
---
-DELETE FROM StartBiasResources WHERE CivilizationType = 'CIVILIZATION_NUBIA'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
-INSERT INTO StartBiasResources (CivilizationType, ResourceType, Tier)
-SELECT 'CIVILIZATION_NUBIA', ResourceType, 5
-FROM Improvement_ValidResources
-WHERE ImprovementType = 'IMPROVEMENT_MINE'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);

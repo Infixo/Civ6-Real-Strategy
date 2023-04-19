@@ -3,6 +3,7 @@
 -- Author: Infixo
 -- 2019-01-05: Created
 -- 2019-03-21: Separate file
+-- 2023-04-19: Removal of Start Biases, use Real Fixes or Better Balance Start
 -- ===========================================================================
 
 
@@ -143,10 +144,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('GenghisPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, -10),
 ('GenghisPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, -10);
 
--- 2019-04-04 start bias
-UPDATE StartBiasResources SET Tier = 3 WHERE CivilizationType = 'CIVILIZATION_MONGOLIA' AND ResourceType = 'RESOURCE_HORSES'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
-
 
 
 -- LEADER_LAUTARO / MAPUCHE
@@ -187,18 +184,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 
 DELETE FROM LeaderTraits WHERE LeaderType = 'LEADER_ROBERT_THE_BRUCE' AND TraitType = 'TRAIT_LEADER_SCIENCE_MAJOR_CIV'; -- 210623 not needed
 
--- 2019-04-04 start bias
-INSERT OR REPLACE INTO StartBiasTerrains (CivilizationType, TerrainType, Tier)
-SELECT 'CIVILIZATION_SCOTLAND', TerrainType, 4
-FROM Terrains
-WHERE Hills = 1 AND TerrainType <> 'TERRAIN_SNOW_HILLS'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
---
-INSERT OR REPLACE INTO StartBiasFeatures (CivilizationType, FeatureType, Tier)
-SELECT CivilizationType, 'FEATURE_FOREST', 5
-FROM Civilizations
-WHERE CivilizationType = 'CIVILIZATION_SCOTLAND'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
 -- LEADER_SEONDEOK / KOREA
@@ -243,12 +228,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('ProtectorateWarriorList', 'DIPLOACTION_DECLARE_WAR_MINOR_CIV', 0, 0), -- for now only Tamar uses it, might change in the future
 ('ProtectorateWarriorList', 'DIPLOACTION_DECLARE_LIBERATION_WAR', 1, 0);
 
--- 2019-04-04 start bias
-INSERT OR REPLACE INTO StartBiasTerrains (CivilizationType, TerrainType, Tier)
-SELECT 'CIVILIZATION_GEORGIA', TerrainType, 4
-FROM Terrains
-WHERE Hills = 1 AND TerrainType <> 'TERRAIN_SNOW_HILLS'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
 -- LEADER_WILHELMINA / NETHERLANDS
@@ -261,10 +240,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('WilhelminaPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, 15),
 ('WilhelminaPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- polder
 ('WilhelminaPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 20);
-
--- 2019-04-04 start bias
-UPDATE StartBiasTerrains SET Tier = 2 WHERE CivilizationType = 'CIVILIZATION_NETHERLANDS' AND TerrainType = 'TERRAIN_COAST'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
 

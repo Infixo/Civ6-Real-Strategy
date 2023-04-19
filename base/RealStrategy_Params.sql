@@ -6,6 +6,7 @@
 -- 2020-08-09: Updated BELIEFS to New Frontier patch
 -- 2023-01-26: Version 2.1
 -- 2023-03-21: Version 2.1, part 2
+-- 2023-04-19: Removal of Start Biases, use Real Fixes or Better Balance Start
 -- ===========================================================================
 
 -- just to make versioning easier
@@ -20,9 +21,6 @@ INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_LOG_OTHER', '0');
 
 -- random numbers - support for Multi Player
 INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_RANDOM', '2'); -- 0 - turned OFF / 1 - turned ON, using math.rand / 2 - turned ON, using Game.GetRandNum
-
--- start biases on/off
-INSERT INTO GlobalParameters (Name, Value) VALUES ('RST_OPTION_BIASES', '1'); -- 0 - turned OFF / 1 - turned ON
 
 
 

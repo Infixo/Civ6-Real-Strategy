@@ -2,7 +2,9 @@
 -- Real Strategy - Main file with Leaders
 -- Author: Infixo
 -- 2019-01-04: Created
+-- 2023-04-19: Removal of Start Biases, use Real Fixes or Better Balance Start
 -- ===========================================================================
+
 -- TODO: generic change - make sure DiplomaticActions are connected to Agendas!
 -- TODO: R&F usage - Commemorations, Gov Buildings!
 -- TODO: some ideas are common - thnk about making TRAITS, like "more TRs", "more wonders", etc.
@@ -380,12 +382,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('GandhiProjects', 'PROJECT_BUILD_NUCLEAR_DEVICE', 1, 0),
 ('GandhiProjects', 'PROJECT_BUILD_THERMONUCLEAR_DEVICE', 1, 0);
 
--- 2019-04-04 start bias
-INSERT OR REPLACE INTO StartBiasTerrains (CivilizationType, TerrainType, Tier)
-SELECT 'CIVILIZATION_INDIA', TerrainType, 5
-FROM Improvement_ValidTerrains
-WHERE ImprovementType = 'IMPROVEMENT_STEPWELL' AND TerrainType <> 'TERRAIN_SNOW'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
 -- LEADER_CLEOPATRA / EGYPT
@@ -474,12 +470,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value)
 SELECT 'GilgameshWonders', 'BUILDING_KILWA_KISIWANI', 1, 0
 FROM Types WHERE Type = 'BUILDING_KILWA_KISIWANI';
 
--- 2019-04-04 start bias
-INSERT OR REPLACE INTO StartBiasTerrains (CivilizationType, TerrainType, Tier)
-SELECT 'CIVILIZATION_SUMERIA', TerrainType, 5
-FROM Improvement_ValidTerrains
-WHERE ImprovementType = 'IMPROVEMENT_ZIGGURAT' AND TerrainType <> 'TERRAIN_SNOW'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
 -- LEADER_GORGO & LEADER_PERICLES / GREECE
@@ -545,11 +535,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('LastVikingKingNavalPreference', 'PSEUDOYIELD_UNIT_RELIGIOUS', 1, 10),
 ('LastVikingKingNavalPreference', 'PSEUDOYIELD_UNIT_SETTLER', 1, 10); -- more cities
 
--- 2019-04-04 start bias
-INSERT OR REPLACE INTO StartBiasFeatures (CivilizationType, FeatureType, Tier)
-SELECT 'CIVILIZATION_NORWAY', 'FEATURE_FOREST', 5
-FROM GlobalParameters
-WHERE Name = 'RST_OPTION_BIASES' AND Value = 1;
 
 
 -- LEADER_HOJO / JAPAN
@@ -579,11 +564,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('HoJoPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 20),
 ('HoJoPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, 15);
 
--- 2019-04-04 start bias
-INSERT OR REPLACE INTO StartBiasTerrains (CivilizationType, TerrainType, Tier)
-SELECT 'CIVILIZATION_JAPAN', 'TERRAIN_COAST', 5
-FROM GlobalParameters
-WHERE Name = 'RST_OPTION_BIASES' AND Value = 1;
 
 
 -- LEADER_MVEMBA / KONGO
@@ -692,9 +672,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value)
 SELECT 'PhilipWonders', 'BUILDING_STATUE_LIBERTY', 1, 0
 FROM Types WHERE Type = 'BUILDING_STATUE_LIBERTY';
 
--- 2019-04-04 start bias
-UPDATE StartBiasTerrains SET Tier = 4 WHERE CivilizationType = 'CIVILIZATION_SPAIN' AND TerrainType = 'TERRAIN_COAST'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
 -- LEADER_QIN / CHINA / FIRST_EMPEROR_TRAIT
@@ -765,10 +742,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('TomyrisDiplomacy', 'DIPLOACTION_DECLARE_FRIENDSHIP', 1, 0),
 --('TomyrisTechs', 'TECH_ASTROLOGY', 1, 0), -- 2019-03-20 disabled religion as a backup plan -- !BUGGED!
 ('ScythiaFavorStable', 'BUILDING_STABLE', 1, 0);
-
--- 2019-04-04 start bias
-UPDATE StartBiasResources SET Tier = 4 WHERE CivilizationType = 'CIVILIZATION_SCYTHIA' AND ResourceType = 'RESOURCE_HORSES'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
 

@@ -2,6 +2,7 @@
 -- Real Strategy - main file for Indonesia & Khmer DLC
 -- Author: Infixo
 -- 2019-01-05: Created
+-- 2023-04-19: Removal of Start Biases, use Real Fixes or Better Balance Start
 -- ===========================================================================
 
 -- iOS compatibility
@@ -58,9 +59,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('GitarjaPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, 5),
 ('GitarjaPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, 5);
 
--- 2019-04-04 start bias
-UPDATE StartBiasTerrains SET Tier = 1 WHERE CivilizationType = 'CIVILIZATION_INDONESIA' AND TerrainType = 'TERRAIN_COAST'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
 
 
 -- LEADER_JAYAVARMAN / KHMER

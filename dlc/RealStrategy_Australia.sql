@@ -2,6 +2,7 @@
 -- Real Strategy - main file for Australia DLC
 -- Author: Infixo
 -- 2019-01-05: Created
+-- 2023-04-19: Removal of Start Biases, use Real Fixes or Better Balance Start
 -- ===========================================================================
 
 INSERT INTO RSTFlavors (ObjectType, Type, Subtype, Strategy, Value) VALUES -- generated from Excel
@@ -34,12 +35,3 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 --('CurtinPseudoYields', 'PSEUDOYIELD_TOURISM', 1, 10),     -- 2019-04-04 Firaxis wants him more sciency
 ('CurtinPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 15), -- 2019-04-04 Firaxis wants him more sciency
 ('CurtinPseudoYields', 'PSEUDOYIELD_ENVIRONMENT', 1, 20);
-
--- 2019-04-04 start bias
-UPDATE StartBiasResources SET Tier = 4 WHERE CivilizationType = 'CIVILIZATION_AUSTRALIA'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1); -- IMPROVEMENT_PASTURE: RESOURCE_CATTLE, RESOURCE_HORSES, RESOURCE_SHEEP
-INSERT OR REPLACE INTO StartBiasTerrains (CivilizationType, TerrainType, Tier)
-SELECT 'CIVILIZATION_AUSTRALIA', TerrainType, 5
-FROM Improvement_ValidTerrains
-WHERE ImprovementType = 'IMPROVEMENT_OUTBACK_STATION'
-	AND EXISTS (SELECT * FROM GlobalParameters WHERE Name = 'RST_OPTION_BIASES' AND Value = 1);
