@@ -203,6 +203,11 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value, StringVal) VALUES
 ('KupeSettlement', 'Specific Feature', 0, 3, 'FEATURE_FOREST'),
 ('KupeSettlement', 'Specific Feature', 0, 3, 'FEATURE_JUNGLE');
 
+-- 2023-04-19 Missing build infos
+INSERT OR IGNORE INTO UnitAiInfos (UnitType, AiType) VALUES
+('UNIT_MAORI_TOA', 'UNITAI_BUILD');
+
+
 
 -- LEADER_LAURIER
 
@@ -219,6 +224,10 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('LaurierDiplomacy', 'DIPLOACTION_RENEW_ALLIANCE', 1, 0),
 ('LaurierDiplomacy', 'DIPLOACTION_RESIDENT_EMBASSY', 1, 0),
 ('LaurierPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, 25);
+
+-- 2023-04-19 Missing build infos
+INSERT OR IGNORE INTO UnitAiInfos (UnitType, AiType) VALUES
+('UNIT_CANADA_MOUNTIE', 'UNITAI_BUILD');
 
 
 

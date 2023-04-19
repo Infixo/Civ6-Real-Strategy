@@ -52,3 +52,6 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('JoaoUnitBuilds', 'PROMOTION_CLASS_NAVAL_MELEE', 1, 10); -- nau
 
 UPDATE AiFavoredItems SET Value = 20 WHERE ListType = 'JoaoExplorationObsessed' AND Item = 'PSEUDOYIELD_UNIT_EXPLORER';
+
+-- 2023-04-19 Missing build infos
+INSERT OR IGNORE INTO UnitAiInfos (UnitType, AiType) VALUES ('UNIT_PORTUGUESE_NAU', 'UNITAI_BUILD');
