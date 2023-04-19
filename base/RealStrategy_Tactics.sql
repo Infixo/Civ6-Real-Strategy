@@ -58,12 +58,15 @@ SELECT 'UNIT_JET_BOMBER', 'UNITTYPE_SIEGE_ALL' -- iOS compatibility
 FROM UnitAiTypes
 WHERE AiType = 'UNITTYPE_SIEGE_ALL';
 
+-- 230419 #32 remove anti-air units from siege
+DELETE FROM UnitAiInfos WHERE AiType = 'UNITTYPE_SIEGE_ALL' AND UnitType IN ('UNIT_ANTIAIR_GUN', 'UNIT_MOBILE_SAM');
 
 -- UNITTYPE_SIEGE_SUPPORT - ram, tower, medic, engi, baloon, drone, etc.
 -- needs to stay this way until BH is modified - it uses this to make a formation
 
 --DELETE FROM UnitAiInfos WHERE AiType = 'UNITTYPE_SIEGE_SUPPORT' AND UnitType IN ('UNIT_BATTERING_RAM', 'UNIT_SIEGE_TOWER'); -- moved to SIEGE
-
+-- 230419 Engineer should not siege
+DELETE FROM UnitAiInfos WHERE AiType = 'UNITTYPE_SIEGE_SUPPORT' AND UnitType = 'UNIT_MILITARY_ENGINEER';
 
 -- 2018-01-06: UNIT_WARRIOR_MONK is not in UnitAiInfos, so he is basically chilling around, doing nothing
 INSERT OR REPLACE INTO UnitAiInfos (UnitType, AiType) VALUES
@@ -94,6 +97,8 @@ SELECT UnitType, 'UNITTYPE_NAVAL_MELEE'
 FROM Units
 WHERE Domain = 'DOMAIN_SEA' AND PromotionClass = 'PROMOTION_CLASS_NAVAL_MELEE';
 
+-- 2023-04-19 Missing build infos
+INSERT OR IGNORE INTO UnitAiInfos (UnitType, AiType) VALUES ('UNIT_NATURALIST', 'UNITAI_BUILD');
 
 
 -- ===========================================================================
@@ -103,12 +108,12 @@ WHERE Domain = 'DOMAIN_SEA' AND PromotionClass = 'PROMOTION_CLASS_NAVAL_MELEE';
 -- Strengthen teams a bit
 -- ===========================================================================
 
-UPDATE AiOperationDefs SET MaxTargetDistInRegion = 10, MaxTargetDistInArea = 10, MaxTargetDistInWorld = 15, MinOddsOfSuccess = 0.6, MustHaveUnits = 7 WHERE OperationName = 'Attack Enemy City'; -- early, no walls 50%, 5
-UPDATE AiOperationDefs SET MaxTargetDistInRegion = 10, MaxTargetDistInArea = 10, MaxTargetDistInWorld = 15, MinOddsOfSuccess = 0.4, MustHaveUnits = 4 WHERE OperationName = 'Wartime Attack Enemy City'; -- early no walls 25%, 3
-UPDATE AiOperationDefs SET MaxTargetDistInRegion =  8, MaxTargetDistInArea =  8, MaxTargetDistInWorld = 12, MinOddsOfSuccess = 0.7, MustHaveUnits =10 WHERE OperationName = 'Attack Walled City'; -- 60%, 10
-UPDATE AiOperationDefs SET MaxTargetDistInRegion =  8, MaxTargetDistInArea =  8, MaxTargetDistInWorld = 12, MinOddsOfSuccess = 0.5, MustHaveUnits = 7 WHERE OperationName = 'Wartime Attack Walled City'; -- 40%, 6
+UPDATE AiOperationDefs SET MaxTargetDistInRegion = 10, MaxTargetDistInArea = 10, MaxTargetDistInWorld = 12, MinOddsOfSuccess = 0.4, MustHaveUnits = 5 WHERE OperationName = 'Attack Enemy City'; -- early, no walls 50%, 5
+UPDATE AiOperationDefs SET MaxTargetDistInRegion = 10, MaxTargetDistInArea = 10, MaxTargetDistInWorld = 12, MinOddsOfSuccess = 0.2, MustHaveUnits = 4 WHERE OperationName = 'Wartime Attack Enemy City'; -- early no walls 25%, 3
+UPDATE AiOperationDefs SET MaxTargetDistInRegion =  8, MaxTargetDistInArea =  8, MaxTargetDistInWorld = 10, MinOddsOfSuccess = 0.5, MustHaveUnits = 7 WHERE OperationName = 'Attack Walled City'; -- 60%, 10
+UPDATE AiOperationDefs SET MaxTargetDistInRegion =  8, MaxTargetDistInArea =  8, MaxTargetDistInWorld = 10, MinOddsOfSuccess = 0.3, MustHaveUnits = 6 WHERE OperationName = 'Wartime Attack Walled City'; -- 40%, 6
 
-UPDATE AiOperationDefs SET MinOddsOfSuccess = 0.3, MustHaveUnits = 4 WHERE OperationName = 'City Defense'; -- 0%, -1
+UPDATE AiOperationDefs SET MinOddsOfSuccess = 0.2, MustHaveUnits = 3 WHERE OperationName = 'City Defense'; -- 0%, -1
 
 UPDATE AiOperationDefs SET MinOddsOfSuccess = 0.3, MustHaveUnits = 3, EnemyType = 'WAR' WHERE OperationName = 'Naval Superiority'; -- 0%, -1 -- this is NOT city attack, just naval wars and patrol?
 
@@ -159,12 +164,12 @@ Simple City Attack Force - used for:
 	- Wartime Attack Enemy City 0.5, 3.0 => 25%, same as above, but MustBeAtWar="true" MustHaveUnits="3"
 */
 -- strength
-UPDATE AiOperationTeams SET InitialStrengthAdvantage = 1.0, OngoingStrengthAdvantage = 2.0 WHERE TeamName = 'Simple City Attack Force' AND OperationName = 'Attack Enemy City';
-UPDATE AiOperationTeams SET InitialStrengthAdvantage = 0.5, OngoingStrengthAdvantage = 1.0 WHERE TeamName = 'Simple City Attack Force' AND OperationName = 'Wartime Attack Enemy City';
+UPDATE AiOperationTeams SET InitialStrengthAdvantage = 0.8, OngoingStrengthAdvantage = 1.6 WHERE TeamName = 'Simple City Attack Force' AND OperationName = 'Attack Enemy City';
+UPDATE AiOperationTeams SET InitialStrengthAdvantage = 0.4, OngoingStrengthAdvantage = 0.8 WHERE TeamName = 'Simple City Attack Force' AND OperationName = 'Wartime Attack Enemy City';
 -- Seems OK, up to 3 UNITTYPE_SIEGE, so Rams & Towers should count now
-UPDATE OpTeamRequirements SET MinNumber = 2, MaxNumber = 6 WHERE TeamName = 'Simple City Attack Force' AND AiType = 'UNITTYPE_MELEE';
-UPDATE OpTeamRequirements SET MinNumber = 1, MaxNumber = 6 WHERE TeamName = 'Simple City Attack Force' AND AiType = 'UNITTYPE_RANGED';
-UPDATE OpTeamRequirements SET MinNumber = 0, MaxNumber = 3 WHERE TeamName = 'Simple City Attack Force' AND AiType = 'UNITTYPE_SIEGE';
+UPDATE OpTeamRequirements SET MinNumber = 2, MaxNumber = 4 WHERE TeamName = 'Simple City Attack Force' AND AiType = 'UNITTYPE_MELEE';
+UPDATE OpTeamRequirements SET MinNumber = 1, MaxNumber = 4 WHERE TeamName = 'Simple City Attack Force' AND AiType = 'UNITTYPE_RANGED';
+UPDATE OpTeamRequirements SET MinNumber = 0, MaxNumber = 2 WHERE TeamName = 'Simple City Attack Force' AND AiType = 'UNITTYPE_SIEGE';
 
 /*
 City Attack Force - used for:
@@ -172,16 +177,16 @@ City Attack Force - used for:
 	- Wartime Attack Walled City 1.0, 6.0  => 40%, same as above, but MustBeAtWar="true" MustHaveUnits="6"
 */
 -- strength
-UPDATE AiOperationTeams SET InitialStrengthAdvantage = 1.0, OngoingStrengthAdvantage = 2.5 WHERE TeamName = 'City Attack Force' AND OperationName = 'Attack Walled City';
-UPDATE AiOperationTeams SET InitialStrengthAdvantage = 0.5, OngoingStrengthAdvantage = 1.5 WHERE TeamName = 'City Attack Force' AND OperationName = 'Wartime Attack Walled City';
+UPDATE AiOperationTeams SET InitialStrengthAdvantage = 1.0, OngoingStrengthAdvantage = 2.0 WHERE TeamName = 'City Attack Force' AND OperationName = 'Attack Walled City';
+UPDATE AiOperationTeams SET InitialStrengthAdvantage = 0.6, OngoingStrengthAdvantage = 1.2 WHERE TeamName = 'City Attack Force' AND OperationName = 'Wartime Attack Walled City';
 -- composition
-UPDATE OpTeamRequirements SET MinNumber = 7                WHERE TeamName = 'City Attack Force' AND AiType = 'UNITAI_COMBAT';
-UPDATE OpTeamRequirements SET MinNumber = 2, MaxNumber = 6 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_MELEE';
-UPDATE OpTeamRequirements SET MinNumber = 3, MaxNumber = 6 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_RANGED';
+UPDATE OpTeamRequirements SET MinNumber = 6                WHERE TeamName = 'City Attack Force' AND AiType = 'UNITAI_COMBAT';
+UPDATE OpTeamRequirements SET MinNumber = 2, MaxNumber = 5 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_MELEE';
+UPDATE OpTeamRequirements SET MinNumber = 2, MaxNumber = 5 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_RANGED';
 UPDATE OpTeamRequirements SET MinNumber = 0, MaxNumber = 3 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_AIR';
-UPDATE OpTeamRequirements SET MinNumber = 0, MaxNumber = 4 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_AIR_SIEGE';
-UPDATE OpTeamRequirements SET MinNumber = 2, MaxNumber = 4 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_SIEGE';
-UPDATE OpTeamRequirements SET MinNumber = 2, MaxNumber = 6 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_SIEGE_ALL';
+UPDATE OpTeamRequirements SET MinNumber = 0, MaxNumber = 2 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_AIR_SIEGE';
+UPDATE OpTeamRequirements SET MinNumber = 2, MaxNumber = 3 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_SIEGE';
+UPDATE OpTeamRequirements SET MinNumber = 2, MaxNumber = 4 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_SIEGE_ALL';
 UPDATE OpTeamRequirements SET MinNumber = 1, MaxNumber = 2 WHERE TeamName = 'City Attack Force' AND AiType = 'UNITTYPE_SIEGE_SUPPORT';
 
 /*
