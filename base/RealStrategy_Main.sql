@@ -340,8 +340,8 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('CultureVictoryYields', 'YIELD_GOLD',    1, -10),
 ('CultureVictoryYields', 'YIELD_SCIENCE', 1, -15),
 ('CultureVictoryYields', 'YIELD_FAITH',   1, -10),
-('CultureVictoryPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -50), -- base 750
-('CultureVictoryPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, 50), -- base 40
+--('CultureVictoryPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -50), -- base 750
+--('CultureVictoryPseudoYields', 'PSEUDOYIELD_CITY_DEFENSES', 1, 50), -- base 40
 ('CultureVictoryPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_BONUS', 1, 15), -- base 0.25
 ('CultureVictoryPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, -25),
 --('CultureVictoryPseudoYields', 'PSEUDOYIELD_CIVIC', 1, 100), -- see explaination above
@@ -410,7 +410,7 @@ UPDATE AiFavoredItems SET Value =  35 WHERE ListType = 'ScienceVictoryPseudoYiel
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('ScienceVictoryYields', 'YIELD_FAITH', 1, -25),
 ('ScienceVictoryYields', 'YIELD_CULTURE', 1, -15),
-('ScienceVictoryPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -50), -- base 750
+--('ScienceVictoryPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -50), -- base 750
 --('ScienceVictoryPseudoYields', 'PSEUDOYIELD_CIVIC', 1, -100), -- see explanation above
 ('ScienceVictoryPseudoYields', 'PSEUDOYIELD_GPP_ENGINEER', 1, 20), -- need for infra
 ('ScienceVictoryPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, -30),
@@ -535,7 +535,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('MilitaryVictoryYields', 'YIELD_CULTURE', 1,-15),
 ('MilitaryVictoryYields', 'YIELD_FAITH',   1,-25),
 -- 230419 #31 pseudo CITY update, balanced with AggressivePseudoYields
-('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 25), -- not used
+--('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, 25), -- not used
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_CITY_DEFENDING_UNITS', 1, -15), -- not used, base 80
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_SPACE_RACE', 1, -50), -- base 100, leave that as an option
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_CLEAR_BANDIT_CAMPS', 1, 15), -- base 1.5, agenda lover uses +5%

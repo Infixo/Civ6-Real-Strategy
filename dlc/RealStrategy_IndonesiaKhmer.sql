@@ -53,7 +53,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('GitarjaYields', 'YIELD_CULTURE',    1,  5),
 ('GitarjaYields', 'YIELD_SCIENCE',    1, -5),
 ('GitarjaWonders', 'BUILDING_ANGKOR_WAT', 1, 0),
-('GitarjaPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
+--('GitarjaPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
 ('GitarjaPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 20), -- kampung
 ('GitarjaPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 20),
 ('GitarjaPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, 5),

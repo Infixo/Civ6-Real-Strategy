@@ -368,7 +368,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('PeacekeeperWarLimits', 'DIPLOACTION_DECLARE_FRIENDSHIP', 1, 0), -- peace!
 ('PeacekeeperWarLimits', 'DIPLOACTION_RENEW_ALLIANCE', 1, 0), -- peace!
 ('PeacekeeperWarLimits', 'DIPLOACTION_RESIDENT_EMBASSY', 1, 0), -- peace
-('GandhiPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
+--('GandhiPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
 ('GandhiPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 20),
 ('GandhiPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, 10),
 ('GandhiPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, -15), -- obvious
@@ -423,7 +423,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('EgyptYields', 'YIELD_PRODUCTION', 1, 10),
 ('EgyptYields', 'YIELD_CULTURE', 1, 10),
 ('EgyptYields', 'YIELD_SCIENCE', 1, -10),
-('EgyptPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
+--('EgyptPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
 ('EgyptPseudoYields', 'PSEUDOYIELD_WONDER', 1, 10),
 ('EgyptPseudoYields', 'PSEUDOYIELD_TOURISM', 1, 10),
 ('EgyptPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 10); -- sphinx
@@ -615,7 +615,7 @@ INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('PedroPseudoYields', 'TRAIT_LEADER_MAGNANIMOUS', 'PseudoYields');
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('PedroCivics', 'CIVIC_NATURAL_HISTORY', 1, 0),
-('PedroPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
+--('PedroPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
 ('PedroPseudoYields', 'PSEUDOYIELD_ENVIRONMENT', 1, 20), -- leave jungle
 ('PedroPseudoYields', 'PSEUDOYIELD_UNIT_RELIGIOUS', 1, -25), -- use faith for GP
 ('PedroPseudoYields', 'PSEUDOYIELD_WONDER', 1, -25);
@@ -707,8 +707,8 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('ChinaTechs', 'TECH_FLIGHT',    1, 0),
 ('ChinaPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15),
 ('ChinaPseudoYields', 'PSEUDOYIELD_WONDER',      1, 15),
-('ChinaPseudoYields', 'PSEUDOYIELD_TOURISM',     1, 10),
-('ChinaPseudoYields', 'PSEUDOYIELD_CITY_BASE',   1, -25);
+('ChinaPseudoYields', 'PSEUDOYIELD_TOURISM',     1, 10);
+--('ChinaPseudoYields', 'PSEUDOYIELD_CITY_BASE',   1, -25);
 
 
 

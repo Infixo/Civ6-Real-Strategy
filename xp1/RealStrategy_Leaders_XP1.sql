@@ -170,7 +170,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('PoundmakerYields', 'YIELD_FOOD', 1, 10),
 ('PoundmakerCivics', 'CIVIC_FOREIGN_TRADE', 1, 0),
 ('PoundmakerCivics', 'CIVIC_MERCENARIES', 1, 0),
-('PoundmakerPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
+--('PoundmakerPseudoYields', 'PSEUDOYIELD_CITY_BASE', 1, -100), -- do NOT conquer neighbors
 ('PoundmakerPseudoYields', 'PSEUDOYIELD_UNIT_EXPLORER', 1, 10),
 ('PoundmakerPseudoYields', 'PSEUDOYIELD_UNIT_TRADE', 1, 50),
 ('PoundmakerPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- mekewap
