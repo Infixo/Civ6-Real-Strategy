@@ -63,11 +63,11 @@ UPDATE PlotEvalConditions SET PoorValue = -4, GoodValue = 15 WHERE ConditionType
 --------------------------------------------------------------
 -- Yield biases
 
---UPDATE AiFavoredItems SET Value = 25 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_PRODUCTION'; -- 25
---UPDATE AiFavoredItems SET Value = 20 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_SCIENCE'; -- 10
+UPDATE AiFavoredItems SET Value = 20 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_PRODUCTION'; -- 25
+UPDATE AiFavoredItems SET Value = 15 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_SCIENCE'; -- 10
 --UPDATE AiFavoredItems SET Value = 20 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_CULTURE'; -- 10
-UPDATE AiFavoredItems SET Value = 0 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_GOLD';  -- 20
-UPDATE AiFavoredItems SET Value = -15 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_FAITH'; -- -25
+UPDATE AiFavoredItems SET Value = 10 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_GOLD';  -- 20
+UPDATE AiFavoredItems SET Value = -20 WHERE ListType = 'DefaultYieldBias' AND Item = 'YIELD_FAITH'; -- -25
 
 
 --------------------------------------------------------------
@@ -542,7 +542,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 15), -- base 0.7
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, -30), -- base 0.8
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, 10), -- base 0.5
-('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1, 15), -- base 0.6
+('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1, 10), -- base 0.6
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_TOURISM', 1, -50), -- base 1
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_HAPPINESS', 1, 15), -- amenities
 ('MilitaryVictoryPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, 15), -- def. 1
@@ -614,22 +614,23 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 
 -- ===========================================================================
 -- TIME STRATEGIES - they are CUMULATIVE
+-- 230425 #38 Simplify time strategies, several changes
 -- ===========================================================================
 
 -- iOS compatibility
 -- 4 AiLists where added in later versions of the game
 
-INSERT OR REPLACE INTO AiListTypes (ListType) VALUES
+INSERT OR IGNORE INTO AiListTypes (ListType) VALUES
 ('ClassicalPseudoYields'),
 ('MedievalPseudoYields'),
 ('RenaissancePseudoYields'),
 ('IndustrialPseudoYields');
-INSERT OR REPLACE INTO AiLists (ListType, System) VALUES
+INSERT OR IGNORE INTO AiLists (ListType, System) VALUES
 ('ClassicalPseudoYields',   'PseudoYields'),
 ('MedievalPseudoYields',    'PseudoYields'),
 ('RenaissancePseudoYields', 'PseudoYields'),
 ('IndustrialPseudoYields',  'PseudoYields');
-INSERT OR REPLACE INTO Strategy_Priorities (StrategyType, ListType) VALUES
+INSERT OR IGNORE INTO Strategy_Priorities (StrategyType, ListType) VALUES
 ('STRATEGY_CLASSICAL_CHANGES',   'ClassicalPseudoYields'),
 ('STRATEGY_MEDIEVAL_CHANGES',    'MedievalPseudoYields'),
 ('STRATEGY_RENAISSANCE_CHANGES', 'RenaissancePseudoYields'),
@@ -640,28 +641,28 @@ INSERT OR REPLACE INTO Strategy_Priorities (StrategyType, ListType) VALUES
 INSERT OR IGNORE INTO Strategy_Priorities (StrategyType, ListType) VALUES ('STRATEGY_MEDIEVAL_CHANGES', 'MedievalSettlements');
 
 
-INSERT OR REPLACE INTO Types (Type, Kind) VALUES
+INSERT OR IGNORE INTO Types (Type, Kind) VALUES
 ('STRATEGY_ANCIENT_CHANGES',     'KIND_VICTORY_STRATEGY'), -- 210626 added in NFP
 ('STRATEGY_ATOMIC_CHANGES',      'KIND_VICTORY_STRATEGY'), -- chances are, it will be added in GS
 ('STRATEGY_INFORMATION_CHANGES', 'KIND_VICTORY_STRATEGY');
 
-INSERT OR REPLACE INTO Strategies (StrategyType, VictoryType, NumConditionsNeeded) VALUES
+INSERT OR IGNORE INTO Strategies (StrategyType, VictoryType, NumConditionsNeeded) VALUES
 ('STRATEGY_ANCIENT_CHANGES',     NULL, 1),
 ('STRATEGY_ATOMIC_CHANGES',      NULL, 1),
 ('STRATEGY_INFORMATION_CHANGES', NULL, 1);
 
 -- not for minors
-INSERT OR REPLACE INTO StrategyConditions (StrategyType, ConditionFunction, Disqualifier) VALUES
+INSERT OR IGNORE INTO StrategyConditions (StrategyType, ConditionFunction, Disqualifier) VALUES
 ('STRATEGY_ANCIENT_CHANGES',     'Is Not Major', 1),
 ('STRATEGY_ATOMIC_CHANGES',      'Is Not Major', 1),
 ('STRATEGY_INFORMATION_CHANGES', 'Is Not Major', 1);
 
-INSERT INTO StrategyConditions (StrategyType, ConditionFunction, StringValue, ThresholdValue) VALUES
-('STRATEGY_ATOMIC_CHANGES',      'Is Ancient',     NULL, 0),
+INSERT OR IGNORE INTO StrategyConditions (StrategyType, ConditionFunction, StringValue, ThresholdValue) VALUES
+('STRATEGY_ANCIENT_CHANGES',     'Is Ancient',     NULL, 0), -- 230425 #38 incorrect value
 ('STRATEGY_ATOMIC_CHANGES',      'Is Atomic',      NULL, 0), -- need to test
 ('STRATEGY_INFORMATION_CHANGES', 'Is Information', NULL, 0); -- need to test
 
-INSERT OR REPLACE INTO AiListTypes (ListType) VALUES
+INSERT OR IGNORE INTO AiListTypes (ListType) VALUES
 ('AncientYields'),
 ('AncientPseudoYields'),
 ('ModernPseudoYields'),
@@ -669,7 +670,7 @@ INSERT OR REPLACE INTO AiListTypes (ListType) VALUES
 ('AtomicPseudoYields'),
 ('InformationYields'),
 ('InformationPseudoYields');
-INSERT OR REPLACE INTO AiLists (ListType, System) VALUES
+INSERT OR IGNORE INTO AiLists (ListType, System) VALUES
 ('AncientYields',       'Yields'),
 ('AncientPseudoYields', 'PseudoYields'),
 ('ModernPseudoYields', 'PseudoYields'),
@@ -677,7 +678,7 @@ INSERT OR REPLACE INTO AiLists (ListType, System) VALUES
 ('AtomicPseudoYields', 'PseudoYields'),
 ('InformationYields',       'Yields'),
 ('InformationPseudoYields', 'PseudoYields');
-INSERT OR REPLACE INTO Strategy_Priorities (StrategyType, ListType) VALUES
+INSERT OR IGNORE INTO Strategy_Priorities (StrategyType, ListType) VALUES
 ('STRATEGY_ANCIENT_CHANGES', 'AncientYields'),
 ('STRATEGY_ANCIENT_CHANGES', 'AncientPseudoYields'),
 ('STRATEGY_MODERN_CHANGES', 'ModernPseudoYields'),
@@ -701,99 +702,59 @@ DELETE FROM AiFavoredItems WHERE ListType IN (
 'IndustrialPseudoYields',
 'IndustrialYields',
 --'ModernSensitivity',
+'ModernPseudoYields',
 'ModernYields');
     
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 -- ANCIENT
 ('AncientYields', 'YIELD_FAITH',   1, 15), -- just to get a religion
-('AncientYields', 'YIELD_SCIENCE', 1, 10),
-('AncientPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15),
 ('AncientPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, -25), -- #27
-('AncientPseudoYields', 'PSEUDOYIELD_GPP_PROPHET',   1, 20),
-('AncientPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 10),
+('AncientPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, 15),
+('AncientPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, 15),
 -- CLASSICAL
---('ClassicalSensitivity', 'YIELD_SCIENCE', 1, 10),
 ('ClassicalYields', 'YIELD_CULTURE', 1, 15),
-('ClassicalYields', 'YIELD_FAITH',   1,-10), -- def. 20
---('ClassicalYields', 'YIELD_FOOD',    1, 15), -- def. 15
-('ClassicalYields', 'YIELD_GOLD',    1, 15), -- def. 20
 ('ClassicalYields', 'YIELD_SCIENCE', 1, 15), -- 210619 Sept. 2020 patch - increase by 150 (sic!)
-('ClassicalPseudoYields', 'PSEUDOYIELD_GPP_MERCHANT',  1, 15),
-('ClassicalPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 15),
-('ClassicalPseudoYields', 'PSEUDOYIELD_GPP_WRITER',    1, 15),
---('ClassicalPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, -15),
+('ClassicalPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, -15),
 -- MEDIEVAL
---('MedievalSensitivity',	'YIELD_CULTURE', 1, 10),
 ('MedievalYields', 'YIELD_CULTURE',    1,-15),
-('MedievalYields', 'YIELD_FAITH',      1, 15), -- def. -25
-('MedievalYields', 'YIELD_FOOD',       1, 20), -- def. 25
-('MedievalYields', 'YIELD_GOLD',       1,-15), -- def. 15
+('MedievalYields', 'YIELD_FAITH',      1, -15),
+('MedievalYields', 'YIELD_FOOD',       1, 15), -- def. 25
 ('MedievalYields', 'YIELD_PRODUCTION', 1, 15), -- def. 20
-('MedievalYields', 'YIELD_SCIENCE',    1,-15), -- def. 15
-('MedievalPseudoYields', 'PSEUDOYIELD_GPP_ENGINEER',  1, 15),
-('MedievalPseudoYields', 'PSEUDOYIELD_GPP_MERCHANT',  1,-15),
-('MedievalPseudoYields', 'PSEUDOYIELD_GPP_PROPHET',   1,-20),
-('MedievalPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1,-15),
-('MedievalPseudoYields', 'PSEUDOYIELD_GPP_WRITER',    1,-15),
-('MedievalPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, -15),
-('MedievalPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, -15),
+--('MedievalYields', 'YIELD_SCIENCE',    1,-15), -- def. 15
+('MedievalPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, -25),
+('MedievalPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, 15),
 ('MedievalPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, 25), -- #27
+('MedievalPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, 10),
+('MedievalPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_VALUE', 1, 15),
 -- RENAISSANCE
 ('RenaissanceYields', 'YIELD_CULTURE',    1, 15),
-('RenaissanceYields', 'YIELD_FAITH',      1,-25),
 ('RenaissanceYields', 'YIELD_FOOD',       1,-15), -- def. 10
-('RenaissanceYields', 'YIELD_GOLD',       1, 20), -- def. 15
+('RenaissanceYields', 'YIELD_GOLD',       1, 10), -- def. 15
 ('RenaissanceYields', 'YIELD_PRODUCTION', 1,-10),
-('RenaissanceYields', 'YIELD_SCIENCE',    1, 15),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_ARTIST',    1, 10),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_ENGINEER',  1, 10),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_MERCHANT',  1, 15),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_PROPHET',   1,-25),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 20),
-('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_WRITER',    1, 10),
---('RenaissancePseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, -10),
+--('RenaissanceYields', 'YIELD_SCIENCE',    1, 10),
+('RenaissancePseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 15),
 ('RenaissancePseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, 15), -- exploration time
 -- INDUSTRIAL
 ('IndustrialYields', 'YIELD_CULTURE',	1, -15),
 ('IndustrialYields', 'YIELD_FAITH',	1, -10),
-('IndustrialYields', 'YIELD_PRODUCTION', 1, 20),
-('IndustrialPseudoYields', 'PSEUDOYIELD_GPP_MERCHANT', 1, -15),
-('IndustrialPseudoYields', 'PSEUDOYIELD_GPP_ENGINEER', 1, 20),
-('IndustrialPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 10),
-('IndustrialPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, 10),
+('IndustrialYields', 'YIELD_PRODUCTION', 1, 15),
 ('IndustrialPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, -15),
+('IndustrialPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, -10),
+('IndustrialPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_VALUE', 1, -15),
 -- MODERN
---('ModernSensitivity', 'YIELD_CULTURE', 1, 10),
---('ModernSensitivity', 'YIELD_SCIENCE', 1, 10),
---('ModernYields', 'YIELD_CULTURE', 1, 10),
-('ModernYields', 'YIELD_FOOD', 1, 10),
-('ModernYields', 'YIELD_GOLD', 1, 10),
-('ModernPseudoYields', 'PSEUDOYIELD_GPP_ENGINEER', 1, -15),
+('ModernSensitivity', 'YIELD_SCIENCE', 1, -15),
 ('ModernPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, -15),
-('ModernPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, 10), -- incenvite for ideological wars
-('ModernPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_VALUE', 1, 20),
-('ModernPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15),
-('ModernPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, -15),
 -- ATOMIC
-('AtomicYields', 'YIELD_FOOD', 1, -10),
-('AtomicYields', 'YIELD_GOLD', 1, 15),
-('AtomicYields', 'YIELD_SCIENCE', 1, 15),
-('AtomicYields', 'YIELD_PRODUCTION', 1, 10),
-('AtomicPseudoYields', 'PSEUDOYIELD_GPP_SCIENTIST', 1, 10),
---('AtomicPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, -15),
-('AtomicPseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT', 1, 25),
+('AtomicYields', 'YIELD_CULTURE', 1, 15),
+('AtomicYields', 'YIELD_GOLD', 1, 10),
+('AtomicYields', 'YIELD_PRODUCTION', 1, -10),
+('AtomicPseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT', 1, 20),
 ('AtomicPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, -15),
+('AtomicPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, 10), -- incenvite for ideological wars
+('AtomicPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_VALUE', 1, 15),
 -- INFORMATION
 ('InformationYields', 'YIELD_CULTURE', 1, -15),
-('InformationYields', 'YIELD_FAITH', 1, -25),
-('InformationYields', 'YIELD_FOOD', 1, -25), -- no need for bigger cities at that time
-('InformationYields', 'YIELD_GOLD', 1, 15),
---('InformationYields', 'YIELD_SCIENCE', 1, -15),
-('InformationPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, -20), -- peace time!
-('InformationPseudoYields', 'PSEUDOYIELD_STANDING_ARMY_VALUE', 1, -40),
-('InformationPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, -15),
-('InformationPseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT', 1, 25),
-('InformationPseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, -15);
+('InformationYields', 'YIELD_FOOD', 1, -25); -- no need for bigger cities at that time
 
 -- 2021-06-19 Firaxis made Campus and Theater Square obligatory for every Civ
 DELETE FROM AiFavoredItems WHERE ListType = 'ClassicalDistricts' AND Item = 'DISTRICT_CAMPUS';
