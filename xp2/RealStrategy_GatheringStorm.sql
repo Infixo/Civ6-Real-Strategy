@@ -257,6 +257,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored) VALUES
 ------------------------------------------------------------------------------
 -- VICTORY_STRATEGY_SCIENCE_VICTORY
 
+DELETE FROM AiFavoredItems WHERE ListType = 'ScienceVictoryProjects' AND Item IN ('PROJECT_ORBITAL_LASER','PROJECT_TERRESTRIAL_LASER'); -- 230426 compatibility with Real Fixes
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('ScienceVictoryProjects', 'PROJECT_ORBITAL_LASER',     1, 0),
 ('ScienceVictoryProjects', 'PROJECT_TERRESTRIAL_LASER', 1, 0),
