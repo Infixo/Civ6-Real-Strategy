@@ -119,8 +119,13 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 -- the list is defined but no wonders defined
 ('DidoWonders', 'BUILDING_COLOSSUS', 1, 0),
 ('DidoWonders', 'BUILDING_GREAT_LIGHTHOUSE', 1, 0),
-('DidoWonders', 'BUILDING_HALICARNASSUS_MAUSOLEUM', 1, 0),
 ('DidoWonders', 'BUILDING_PANAMA_CANAL', 1, 0);
+
+-- DLC Wonder
+INSERT INTO AiFavoredItems (ListType, Item) 
+SELECT 'DidoWonders', 'BUILDING_HALICARNASSUS_MAUSOLEUM'
+FROM Buildings
+WHERE BuildingType = 'BUILDING_HALICARNASSUS_MAUSOLEUM';
 
 
 -- LEADER_ELEANOR_ENGLAND

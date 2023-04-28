@@ -28,23 +28,6 @@ UPDATE AiFavoredItems SET Item = 'TECH_SAILING' WHERE Item = 'TECH_SALING'; -- G
 DELETE FROM AiFavoredItems WHERE ListType = 'WilhelminaEmergencyAllianceList' AND Item = 'DIPLOACTION_ALLIANCE_MILITARY_EMERGENCY(NOT_IN_YET)'; -- WilhelminaEmergencyAllianceList, REMOVE IF IMPLEMENTED PROPERLY!
 DELETE FROM AiFavoredItems WHERE ListType = 'IronConfederacyDiplomacy' AND Item = 'DIPLOACTION_ALLIANCE_TEAMUP'; -- IronConfederacyDiplomacy, does not exists in Diplo Actions, REMOVE IF IMPLEMENTED PROPERLY!
 
-/*
-This System is not tested, so no changes here yet. Also, it seems ok.
-
-DELETE FROM AiFavoredItems WHERE ListType IN (
-'ClassicalSensitivity',
-'MedievalSensitivity',
-'ModernSensitivity');
-
-INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
--- CLASSICAL
-('ClassicalSensitivity', 'YIELD_SCIENCE', 1, 10),
--- MEDIEVAL
-('MedievalSensitivity',	'YIELD_CULTURE', 1, 10),
--- MODERN
-('ModernSensitivity', 'YIELD_CULTURE', 1, 10),
-('ModernSensitivity', 'YIELD_SCIENCE', 1, 10),
-*/
 
 
 -- ===========================================================================
@@ -62,6 +45,17 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('MilitaryVictoryWonders', 'BUILDING_GOV_MILITARY', 1, 0),
 ('CultureVictoryWonders', 'BUILDING_GOV_CULTURE', 1, 0),
 ('ScienceVictoryWonders', 'BUILDING_GOV_SCIENCE', 1, 0);
+
+
+------------------------------------------------------------------------------
+-- 230428 Time Strategies, YieldSensitivities
+-- This System is not tested, so no changes here yet. Also, it seems ok.
+
+INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
+-- CLASSICAL
+-- MEDIEVAL
+-- MODERN
+('ModernSensitivity', 'YIELD_SCIENCE', 1, -15);
 
 
 ------------------------------------------------------------------------------

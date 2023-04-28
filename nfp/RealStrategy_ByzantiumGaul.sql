@@ -97,11 +97,16 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('BasilCivics', 'CIVIC_DIVINE_RIGHT', 1, 0),
 ('BasilPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, 15),
 ('BasilPseudoYields', 'PSEUDOYIELD_UNIT_RELIGIOUS',  1, 15),
-('BasilPseudoYields', 'PSEUDOYIELD_RELIGIOUS_CONVERT_EMPIRE',  1, 15),
 ('BasilUnitBuilds', 'PROMOTION_CLASS_HEAVY_CAVALRY', 1, 10),
 ('BasilUnitBuilds', 'PROMOTION_CLASS_LIGHT_CAVALRY', 1, 10),
 ('BasilDiplomacy', 'DIPLOACTION_DECLARE_HOLY_WAR', 1, 0),
 ('BasilDiplomacy', 'DIPLOACTION_KEEP_PROMISE_DONT_CONVERT', 0, 0);
+
+-- PseudoYield from XP2
+INSERT INTO AiFavoredItems (ListType, Item, Favored, Value)
+SELECT 'BasilPseudoYields', 'PSEUDOYIELD_RELIGIOUS_CONVERT_EMPIRE', 1, 15 -- favor
+FROM PseudoYields
+WHERE PseudoYieldType = 'PSEUDOYIELD_RELIGIOUS_CONVERT_EMPIRE';
 
 -- why firaxis wants him to build walls???
 DELETE FROM AiFavoredItems WHERE ListType = 'BasilFavoredBuildings';

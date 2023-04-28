@@ -133,9 +133,14 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('RSTNavalCivics', 'CIVIC_FOREIGN_TRADE', 1, 0),
 ('RSTNavalCivics', 'CIVIC_NAVAL_TRADITION', 1, 0),
 ('RSTNavalWonders', 'BUILDING_GREAT_LIGHTHOUSE', 1, 0),
-('RSTNavalWonders', 'BUILDING_HALICARNASSUS_MAUSOLEUM', 1, 0),
 ('NavalUnitPreferences', 'PSEUDOYIELD_GPP_ADMIRAL', 1, 15),
 ('NavalUnitPreferences', 'PSEUDOYIELD_GPP_GENERAL', 1, -15);
+
+-- DLC Wonder
+INSERT INTO AiFavoredItems (ListType, Item) 
+SELECT 'RSTNavalWonders', 'BUILDING_HALICARNASSUS_MAUSOLEUM'
+FROM Buildings
+WHERE BuildingType = 'BUILDING_HALICARNASSUS_MAUSOLEUM';
 
 
 --------------------------------------------------------------
@@ -198,13 +203,17 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('RSTIslandCivics', 'CIVIC_FOREIGN_TRADE', 1, 0),
 ('RSTIslandCivics', 'CIVIC_NAVAL_TRADITION', 1, 0),
 ('RSTIslandWonders', 'BUILDING_GREAT_LIGHTHOUSE', 1, 0),
-('RSTIslandWonders', 'BUILDING_HALICARNASSUS_MAUSOLEUM', 1, 0),
 ('RSTIslandPseudoYields', 'PSEUDOYIELD_GPP_ADMIRAL', 1, 25),
 ('RSTIslandPseudoYields', 'PSEUDOYIELD_GPP_GENERAL', 1, -25),
 ('RSTIslandPseudoYields', 'PSEUDOYIELD_UNIT_AIR_COMBAT', 1, 25),
 ('RSTIslandPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, -30),
 ('RSTIslandPseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, 50);
 
+-- DLC Wonder
+INSERT INTO AiFavoredItems (ListType, Item) 
+SELECT 'RSTIslandWonders', 'BUILDING_HALICARNASSUS_MAUSOLEUM'
+FROM Buildings
+WHERE BuildingType = 'BUILDING_HALICARNASSUS_MAUSOLEUM';
 
 
 

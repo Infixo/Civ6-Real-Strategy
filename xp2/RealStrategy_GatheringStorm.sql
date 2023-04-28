@@ -277,6 +277,17 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 
 
 ------------------------------------------------------------------------------
+-- 230428 Time Strategies
+
+INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
+-- ANCIENT
+('AncientPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, -25), -- #27
+-- CLASSICAL
+-- MEDIEVAL
+('MedievalPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, 25); -- #27
+
+
+------------------------------------------------------------------------------
 -- RST_STRATEGY_ANTI_SCIENCE
 
 DELETE FROM AiFavoredItems WHERE ListType = 'AntiScienceProjects' AND Item IN ('PROJECT_LAUNCH_MARS_REACTOR', 'PROJECT_LAUNCH_MARS_HABITATION', 'PROJECT_LAUNCH_MARS_HYDROPONICS');

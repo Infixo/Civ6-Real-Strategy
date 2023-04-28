@@ -54,8 +54,13 @@ INSERT INTO AiLists (ListType, LeaderType, System) VALUES
 ('RooseveltAltDiploActions', 'TRAIT_LEADER_ROOSEVELT_COROLLARY', 'DiplomaticActions');
 
 INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
-('RooseveltAltPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, 15), -- favor
 ('RooseveltAltPseudoYields', 'PSEUDOYIELD_INFLUENCE', 1, 15), -- envoys
 ('RooseveltAltPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_BONUS', 1, 15), -- good relations
 ('RooseveltAltPseudoYields', 'PSEUDOYIELD_UNIT_TRADE',  1, 25), -- traders
 ('RooseveltAltDiploActions', 'DIPLOACTION_GRANT_INFLUENCE_TOKEN', 1, 0); -- suze all city states!
+
+-- PseudoYield from XP2
+INSERT INTO AiFavoredItems (ListType, Item, Favored, Value)
+SELECT 'RooseveltAltPseudoYields', 'PSEUDOYIELD_DIPLOMATIC_FAVOR', 1, 15 -- favor
+FROM PseudoYields
+WHERE PseudoYieldType = 'PSEUDOYIELD_DIPLOMATIC_FAVOR';
