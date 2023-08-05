@@ -97,7 +97,7 @@ UPDATE PseudoYields SET DefaultValue =    0 WHERE PseudoYieldType = 'PSEUDOYIELD
 -- infrastructure & various
 UPDATE PseudoYields SET DefaultValue =  2.0 WHERE PseudoYieldType = 'PSEUDOYIELD_CLEAR_BANDIT_CAMPS'; -- 	0.5, Ai+ 1.6
 --UPDATE PseudoYields SET DefaultValue =  0.15 WHERE PseudoYieldType = 'PSEUDOYIELD_DIPLOMATIC_BONUS'; -- 	0.25 -- let's not change diplomacy yet
-UPDATE PseudoYields SET DefaultValue = 5.0 WHERE PseudoYieldType = 'PSEUDOYIELD_DISTRICT'; -- 	3.5 => 8 in NFP, AI+ = 6.7! check if this helps with Holy Sites - this is the earliest available district! 210616 changed to 5.0, 8 seems too much
+UPDATE PseudoYields SET DefaultValue = 4.8 WHERE PseudoYieldType = 'PSEUDOYIELD_DISTRICT'; -- 	3.5 => 8 in NFP, AI+ = 6.7! check if this helps with Holy Sites - this is the earliest available district! 210616 changed to 5.0, 8 seems too much
 UPDATE PseudoYields SET DefaultValue = 0.8 WHERE PseudoYieldType = 'PSEUDOYIELD_ENVIRONMENT'; -- 	0.5, AI+ 0.75
 --UPDATE PseudoYields SET DefaultValue = X.X WHERE PseudoYieldType = 'PSEUDOYIELD_GOLDENAGE_POINT'; -- 1, R&F
 --UPDATE PseudoYields SET DefaultValue = X.X WHERE PseudoYieldType = 'PSEUDOYIELD_GOVERNOR'; -- 2, R&F
@@ -209,9 +209,22 @@ UPDATE AiFavoredItems SET Value = 4 WHERE ListType = 'DefaultSavings' AND Item =
 
 
 --------------------------------------------------------------
+-- BUILDINGS - use this list to fine-tune specific buildings
+
+INSERT INTO AiListTypes(ListType) VALUES
+('BuildingPriorityBoosts');
+INSERT INTO AiLists (ListType, LeaderType, System) VALUES
+('BuildingPriorityBoosts', 'TRAIT_LEADER_MAJOR_CIV', 'Buildings');
+INSERT INTO AiFavoredItems(ListType, Item, Value) VALUES
+('BuildingPriorityBoosts', 'BUILDING_WALLS',    15),
+('BuildingPriorityBoosts', 'BUILDING_CASTLE',   10),
+('BuildingPriorityBoosts', 'BUILDING_STAR_FORT', 5);
+
+
+--------------------------------------------------------------
 -- UNITS - in some cases civs produce too many or too few specific units
 
-UPDATE AiFavoredItems SET Value =  10 WHERE ListType = 'UnitPriorityBoosts' AND Item = 'UNIT_SETTLER'; -- was 1
+UPDATE AiFavoredItems SET Value = 0 WHERE ListType = 'UnitPriorityBoosts' AND Item = 'UNIT_SETTLER'; -- was 1
 INSERT INTO AiFavoredItems(ListType, Item, Value) VALUES
 ('UnitPriorityBoosts', 'UNIT_INQUISITOR', -15),
 ('UnitPriorityBoosts', 'UNIT_NATURALIST', 10),
@@ -707,10 +720,12 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('AncientYields', 'YIELD_FAITH',   1, 15), -- just to get a religion
 ('AncientPseudoYields', 'PSEUDOYIELD_GPP_PROPHET', 1, 15),
 ('AncientPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, 15),
+('AncientPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, -15),
 -- CLASSICAL
 ('ClassicalYields', 'YIELD_CULTURE', 1, 15),
 ('ClassicalYields', 'YIELD_SCIENCE', 1, 15), -- 210619 Sept. 2020 patch - increase by 150 (sic!)
 ('ClassicalPseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, -15),
+('ClassicalPseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15),
 -- MEDIEVAL
 ('MedievalYields', 'YIELD_CULTURE',    1,-15),
 ('MedievalYields', 'YIELD_FAITH',      1, -15),
@@ -954,8 +969,8 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('RSTPeaceYields', 'YIELD_GOLD',       1, -10),
 ('RSTPeaceYields', 'YIELD_PRODUCTION', 1,  -5),
 ('RSTPeaceYields', 'YIELD_SCIENCE',    1,  -5),
-('RSTPeacePseudoYields', 'PSEUDOYIELD_DISTRICT', 1, 15), -- build infra
-('RSTPeacePseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 15), -- build infra
+('RSTPeacePseudoYields', 'PSEUDOYIELD_DISTRICT', 1, 10), -- build infra
+('RSTPeacePseudoYields', 'PSEUDOYIELD_IMPROVEMENT', 1, 10), -- build infra
 ('RSTPeacePseudoYields', 'PSEUDOYIELD_STANDING_ARMY_NUMBER', 1, -5), -- shrink a bit
 ('RSTPeacePseudoYields', 'PSEUDOYIELD_STANDING_ARMY_VALUE', 1, -10), -- shrink a bit
 ('RSTPeacePseudoYields', 'PSEUDOYIELD_TOURISM', 1, 10), -- base 1
@@ -963,7 +978,7 @@ INSERT INTO AiFavoredItems (ListType, Item, Favored, Value) VALUES
 ('RSTPeacePseudoYields', 'PSEUDOYIELD_UNIT_COMBAT', 1, -10),
 ('RSTPeacePseudoYields', 'PSEUDOYIELD_UNIT_NAVAL_COMBAT', 1, -10),
 ('RSTPeacePseudoYields', 'PSEUDOYIELD_UNIT_SETTLER', 1, 10),
-('RSTPeacePseudoYields', 'PSEUDOYIELD_WONDER', 1, 15),
+('RSTPeacePseudoYields', 'PSEUDOYIELD_WONDER', 1, 10),
 -- At War
 ('RSTAtWarYields', 'YIELD_CULTURE',    1, -10),
 ('RSTAtWarYields', 'YIELD_FAITH',      1, -10),
